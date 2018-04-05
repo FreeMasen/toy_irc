@@ -1,0 +1,10 @@
+[package]
+name = "irc"
+version = "0.1.0"
+authors = ["= <=>"]
+
+[dependencies]
+irc = "0.13"
+
+[lib]
+name = "irc_client"
