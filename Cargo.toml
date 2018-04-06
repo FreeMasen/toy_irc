@@ -5,6 +5,7 @@ authors = ["= <=>"]
 
 [dependencies]
 irc = "0.13"
+futures = "0"
 
 [lib]
 name = "irc_client"
