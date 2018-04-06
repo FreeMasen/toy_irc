@@ -1,3 +1,4 @@
+mod server;
 // mod irc_client;
 
 // use irc_client::*;
