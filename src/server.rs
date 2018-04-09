@@ -1,21 +1,36 @@
 use std::collections::{HashSet, HashMap};
 use irc::client::prelude::*;
-#[derive(Debug)]
+use std::fmt::{Debug, Result, Formatter};
+pub enum Event {
+    Welcome(Server), 
+    MOTD(String),
+    NewUsers(String, Vec<String>),
+    NewMessage(String, ChannelMessage),
+}
+
+
 pub struct Server {
     motd: String,
     channels: HashMap<String, Channel>,
+    listener: Box<Fn(Event)>
 }
 
-#[derive(Debug)]
+impl Debug for Server {
+    fn fmt(&self, f: &mut Formatter) -> Result {
+        write!(f, "{:?} {:?}", self.motd, self.channels)
+    }
+}
+
+#[derive(Debug, Clone)]
 pub struct Channel {
     users: HashSet<String>,
     messages: Vec<ChannelMessage>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct ChannelMessage {
-    user_name: String,
-    content: String,
+    pub user_name: String,
+    pub content: String,
 }
 
 impl Server {
@@ -23,6 +38,15 @@ impl Server {
         Server {
             motd: String::new(),
             channels: HashMap::new(),
+            listener: Box::new(|_|{}),
+        }
+    }
+
+    pub fn with_listener(listener: Box<Fn(Event)>) -> Server {
+        Server {
+            motd: String::new(),
+            channels: HashMap::new(),
+            listener,
         }
     }
 
@@ -53,7 +77,11 @@ impl Server {
         ch.add_users(names)
     }
 
-    pub fn handle_message(mut self, msg: Message) -> Result<(), ::irc::error::IrcError> {
+    pub fn get_channels(&self) -> HashMap<String, Channel> {
+        self.channels.clone()
+    }
+
+    pub fn handle_message(&mut self, msg: Message) {
         match msg.command {
             Command::PASS(pwd) => println!("PASS {}", pwd),
             Command::NICK(name) => println!("NICK {}", name),
@@ -142,10 +170,9 @@ impl Server {
             Command::Response(res, args, suffix) => self.response(res, args, suffix) ,
             Command::Raw(command, params, param) => println!("Raw {}, {}, {:?}", command, params.join(", "), param),
         }
-        Ok(())
     }
 
-    fn new_message(&self, prefix: Option<String>, channel: String, text: String) {
+    fn new_message(&mut self, prefix: Option<String>, channel: String, text: String) {
         let user_name = match prefix {
             Some(p) => {
                 let parts: Vec<&str> = p.split('!').collect();
@@ -153,13 +180,28 @@ impl Server {
             },
             None => String::from("Unknown")
         };
-        println!("{} @{}$: {}", channel, user_name, text);
+        match self.channels.get_mut(&channel) {
+            Some(mut ch) => {
+                let newMessage = ChannelMessage {
+                    user_name,
+                    content: text,
+                };
+                ch.messages.push(newMessage.clone());
+                (self.listener)(Event::NewMessage(channel, newMessage));
+            },
+            _ => println!("Unable to get channel {}", &channel)
+        }
+
+    }
+
+    fn welcome(&self, args: Vec<String>, suffix: Option<String>) {
+        println!("Welcome\nargs: {:?}\nsuffix:{:?}", args.join(", "), suffix.unwrap_or(String::from("N/A")));
+        Event::Welcome;
     }
 
     fn response(&mut self, res: Response, args: Vec<String>, suffix: Option<String>) {
-        println!("Response");
         match res {
-            Response::RPL_WELCOME => println!("RPL_WELCOME"),
+            Response::RPL_WELCOME => self.welcome(args, suffix),
             Response::RPL_YOURHOST => println!("RPL_YOURHOST"),
             Response::RPL_CREATED => println!("RPL_CREATED"),
             Response::RPL_MYINFO => println!("RPL_MYINFO"),
@@ -201,7 +243,17 @@ impl Server {
                 let names = suffix.expect("names suffix is None");
                 self.add_users(&channel, &names);
             },
-            Response::RPL_ENDOFNAMES => println!("RPL_ENDOFNAMES"),
+            Response::RPL_ENDOFNAMES => {
+                match args.iter().last() {
+                    Some(name) => {
+                        match self.channels.get(name) {
+                            Some(ch) => (self.listener)(Event::NewUsers(name.to_string(), ch.users.iter().map(|s| s.to_string()).collect())),
+                            None => ()
+                        }
+                    },
+                    None => ()
+                }
+            },
             Response::RPL_LINKS => println!("RPL_LINKS"),
             Response::RPL_ENDOFLINKS => println!("RPL_ENDOFLINKS"),
             Response::RPL_BANLIST => println!("RPL_BANLIST"),
@@ -209,8 +261,13 @@ impl Server {
             Response::RPL_INFO => println!("RPL_INFO"),
             Response::RPL_ENDOFINFO => println!("RPL_ENDOFINFO"),
             Response::RPL_MOTDSTART => println!("RPL_MOTDSTART"),
-            Response::RPL_MOTD => println!("RPL_MOTD"),
-            Response::RPL_ENDOFMOTD => println!("RPL_ENDOFMOTD"),
+            Response::RPL_MOTD => {
+                match suffix {
+                    Some(text) => self.add_motd(text),
+                    _ => ()
+                }
+            },
+            Response::RPL_ENDOFMOTD => (self.listener)(Event::MOTD(self.get_motd())),
             Response::RPL_YOUREOPER => println!("RPL_YOUREOPER"),
             Response::RPL_REHASHING => println!("RPL_REHASHING"),
             Response::RPL_YOURESERVICE => println!("RPL_YOURESERVICE"),
