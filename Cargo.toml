@@ -7,6 +7,9 @@ authors = ["= <=>"]
 irc = "0.13"
 futures = "0"
 tokio-core = "0"
+serde = "1"
+serde_derive = "1"
+serde_json = "1"
 
 [lib]
 name = "irc_client"
