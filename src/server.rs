@@ -2,10 +2,11 @@ use std::collections::{HashSet, HashMap};
 use irc::client::prelude::*;
 use std::fmt::{Debug, Result, Formatter};
 pub enum Event {
-    Welcome(Server), 
+    Welcome(String),
     MOTD(String),
     NewUsers(String, Vec<String>),
     NewMessage(String, ChannelMessage),
+    Misc(String, Vec<String>, Option<String>)
 }
 
 
@@ -23,6 +24,8 @@ impl Debug for Server {
 
 #[derive(Debug, Clone)]
 pub struct Channel {
+    name: String,
+    topic: String,
     users: HashSet<String>,
     messages: Vec<ChannelMessage>,
 }
@@ -63,112 +66,112 @@ impl Server {
         self.motd.clone()
     }
 
-    pub fn add_channel(&mut self, name: &str) {
-        self.channels.insert(String::from(name), Channel::new());
-    }
+    // pub fn add_channel(&mut self, name: &str) {
+    //     self.channels.insert(String::from(name), Channel::new());
+    // }
 
-    pub fn add_user(&mut self, channel: &str, name: &str) {
-        let ch = self.channels.entry(String::from(channel)).or_insert(Channel::new());
-        ch.users.insert(String::from(name));
-    }
+    // pub fn add_user(&mut self, channel: &str, name: &str) {
+    //     let ch = self.channels.entry(String::from(channel)).or_insert(Channel::new());
+    //     ch.users.insert(String::from(name));
+    // }
 
     pub fn add_users(&mut self, channel: &str, names: &str) {
         let ch = self.channels.entry(String::from(channel)).or_insert(Channel::new());
         ch.add_users(names)
     }
 
-    pub fn get_channels(&self) -> HashMap<String, Channel> {
-        self.channels.clone()
+    pub fn add_ch_topic(&mut self, channel: &str, topic: &str) {
+        let mut ch = self.channels.entry(String::from(channel)).or_insert(Channel::new());
+        ch.topic = String::from(topic);
     }
+
+    // pub fn get_channels(&self) -> HashMap<String, Channel> {
+    //     self.channels.clone()
+    // }
 
     pub fn handle_message(&mut self, msg: Message) {
         match msg.command {
-            Command::PASS(pwd) => println!("PASS {}", pwd),
-            Command::NICK(name) => println!("NICK {}", name),
-            Command::USER(user, mode, realname) => println!("USER {}, {}, {}", user, mode, realname),
-            Command::OPER(name, pwd) => println!("OPER {} {}", name, pwd),
+            Command::PASS(pwd) => (self.listener)(Event::Misc(String::from("PASS"), vec![pwd], None)),
+            Command::NICK(name) => (self.listener)(Event::Misc(String::from("NICK"), vec![name], None)),
+            Command::USER(user, mode, realname) => (self.listener)(Event::Misc(String::from("USER "), vec![user, mode, realname], None)),
+            Command::OPER(name, pwd) => (),//println!("OPER {} {}", name, pwd),
             Command::UserMODE(mode, nics) => {
                 let nicks: Vec<String> = nics.into_iter().map(|m| format!("{:?}", m)).collect();
-                println!("UserMODE {}{:?}", mode, nicks.join(""));
+                ();//println!("UserMODE {}{:?}", mode, nicks.join(""));
             },
-            Command::SERVICE(service, nic, reserved, dist, tp, res_info,) => println!("SERVICE {}, {}, {}, {}, {}, {}", service, nic, reserved, dist, tp, res_info),
-            Command::QUIT(comment) => println!("QUIT {:?}", comment),
-            Command::SQUIT(server, comment) => println!("SQUIT {}, {:?}", server, comment),
-            Command::JOIN(list, keys, realname) => println!("JOIN {}, {:?}, {:?}", list, keys, realname),
-            Command::PART(list, comment) => println!("PART {}, {:?}", list, comment),
+            Command::SERVICE(service, nic, reserved, dist, tp, res_info,) => (),//println!("SERVICE {}, {}, {}, {}, {}, {}", service, nic, reserved, dist, tp, res_info),
+            Command::QUIT(comment) => (),//println!("QUIT {:?}", comment),
+            Command::SQUIT(server, comment) => (),//println!("SQUIT {}, {:?}", server, comment),
+            Command::JOIN(list, keys, realname) => (),//println!("JOIN {}, {:?}, {:?}", list, keys, realname),
+            Command::PART(list, comment) => (),//println!("PART {}, {:?}", list, comment),
             Command::ChannelMODE(channel, modes) => {
                 let modes: Vec<String> = modes.into_iter().map(|m| format!("{:?}", m)).collect();
-                println!("ChannelMODE {},{}", channel, modes.join(""));
+                ();//println!("ChannelMODE {},{}", channel, modes.join(""));
             },
-            Command::TOPIC(channel, topic) => println!("TOPIC {}, {:?}", channel, topic),
-            Command::NAMES(list, target) => println!("NAMES {:?}, {:?}", list, target),
-            Command::LIST(list, target) => println!("LIST {:?}, {:?}", list, target),
-            Command::INVITE(nickname, channel) => println!("INVITE {:?}, {:?}",nickname, channel),
-            Command::KICK(list, user_list, comment) => println!("KICK {}, {}, {:?}", list, user_list, comment),
+            Command::TOPIC(channel, topic) => (),//println!("TOPIC {}, {:?}", channel, topic),
+            Command::NAMES(list, target) => (),//println!("NAMES {:?}, {:?}", list, target),
+            Command::LIST(list, target) => (),//println!("LIST {:?}, {:?}", list, target),
+            Command::INVITE(nickname, channel) => (),//println!("INVITE {:?}, {:?}",nickname, channel),
+            Command::KICK(list, user_list, comment) => (),//println!("KICK {}, {}, {:?}", list, user_list, comment),
             Command::PRIVMSG(target, text) => self.new_message(msg.prefix, target, text),
-            Command::NOTICE(target, text) => println!("NOTICE {} {}", target, text),
-            Command::MOTD(target) => println!("MOTD {:?}", target),
-            Command::LUSERS(mask, target) => println!("LUSERS {:?}, {:?}", mask, target),
-            Command::VERSION(version) => println!("VERSION {:?}", version),
-            Command::STATS(query, target) => println!("STATS {:?}, {:?}", query, target),
-            Command::LINKS(server, mask) => println!("LINKS {:?}, {:?}", server, mask),
-            Command::TIME(time) => println!("TIME {:?}", time),
-            Command::CONNECT(server, port, remote) => println!("CONNECT {:}:{:}, {:?}", server, port, remote),
-            Command::TRACE(target) => println!("TRACE {:?}", target),
-            Command::ADMIN(target) => println!("ADMIN {:?}", target),
-            Command::INFO(target) => println!("INFO {:?}", target),
-            Command::SERVLIST(mask, tp) => println!("SERVLIST {:?}, {:?}", mask, tp),
-            Command::SQUERY(name, text) => println!("SQUERY {}, {}", name, text),
-            Command::WHO(mask, operator) => println!("WHO {:?}, {:?}", mask, operator),
-            Command::WHOIS(target, list) => println!("WHOIS {:?}  {:?}", target, list),
-            Command::WHOWAS(list, count, target) => println!("WHOWAS {}, {:?}, {:?}", list, count, target),
-            Command::KILL(name, comment) => println!("KILL {}, {}", name, comment),
-            Command::PING(me, you) => println!("PING {}, {:?}", me, you),
-            Command::PONG(me, you) => println!("PONG {}, {:?}", me, you),
-            Command::ERROR(msg) => println!("ERROR {}", msg),
-            Command::AWAY(msg) => println!("AWAY {:?}", msg),
-            Command::REHASH => println!("REHASH"),
-            Command::DIE => println!("DIE"),
-            Command::RESTART => println!("RESTART"),
-            Command::SUMMON(user, target, channel) => println!("SUMMON {}, {:?}, {:?}", user, target, channel),
-            Command::USERS(list) => println!("USERS {:?}", list),
-            Command::WALLOPS(text) => println!("WALLOPS {}", text),
-            Command::USERHOST(list) => println!("USERHOST {}", list.join(", ")),
-            Command::ISON(list) => println!("ISON {}", list.join(" ")),
-            Command::SAJOIN(name, channel) => println!("SAJOIN {}, {}", name, channel),
-            Command::SAMODE(target, modes, params) => println!("SAMODE {}, {}, {:?}", target, modes, params),
-            Command::SANICK(old, new) => println!("SANICK {}, {}", old, new),
-            Command::SAPART(name, comment) => println!("SAPART {} {}", name, comment),
-            Command::SAQUIT(name, comment) => println!("SAQUIT {}, {}", name, comment),
-            Command::NICKSERV(msg) => println!("NICKSERV {}", msg),
-            Command::CHANSERV(msg) => println!("CHANSERV {}", msg),
-            Command::OPERSERV(msg) => println!("OPERSERV {}", msg),
-            Command::BOTSERV(msg) => println!("BOTSERV {}", msg),
-            Command::HOSTSERV(msg) => println!("HOSTSERV {}", msg),
-            Command::MEMOSERV(msg) => println!("MEMOSERV {}", msg),
-            Command::CAP(cmd, sub_cmd, arg, param) => println!("CAP {:?}, {:?}. {:?}. {:?}", cmd, sub_cmd, arg, param),
-            Command::AUTHENTICATE(name) => println!("AUTHENTICATE {}", name),
-            Command::ACCOUNT(name) => println!("ACCOUNT {}", name),
+            Command::NOTICE(target, text) => (),//println!("NOTICE {} {}", target, text),
+            Command::MOTD(target) => (),//println!("MOTD {:?}", target),
+            Command::LUSERS(mask, target) => (),//println!("LUSERS {:?}, {:?}", mask, target),
+            Command::VERSION(version) => (),//println!("VERSION {:?}", version),
+            Command::STATS(query, target) => (),//println!("STATS {:?}, {:?}", query, target),
+            Command::LINKS(server, mask) => (),//println!("LINKS {:?}, {:?}", server, mask),
+            Command::TIME(time) => (),//println!("TIME {:?}", time),
+            Command::CONNECT(server, port, remote) => (),//println!("CONNECT {:}:{:}, {:?}", server, port, remote),
+            Command::TRACE(target) => (),//println!("TRACE {:?}", target),
+            Command::ADMIN(target) => (),//println!("ADMIN {:?}", target),
+            Command::INFO(target) => (),//println!("INFO {:?}", target),
+            Command::SERVLIST(mask, tp) => (),//println!("SERVLIST {:?}, {:?}", mask, tp),
+            Command::SQUERY(name, text) => (),//println!("SQUERY {}, {}", name, text),
+            Command::WHO(mask, operator) => (),//println!("WHO {:?}, {:?}", mask, operator),
+            Command::WHOIS(target, list) => (),//println!("WHOIS {:?}  {:?}", target, list),
+            Command::WHOWAS(list, count, target) => (),//println!("WHOWAS {}, {:?}, {:?}", list, count, target),
+            Command::KILL(name, comment) => (),//println!("KILL {}, {}", name, comment),
+            Command::PING(me, you) => (),//println!("PING {}, {:?}", me, you),
+            Command::PONG(me, you) => (),//println!("PONG {}, {:?}", me, you),
+            Command::ERROR(msg) => (),//println!("ERROR {}", msg),
+            Command::AWAY(msg) => (),//println!("AWAY {:?}", msg),
+            Command::REHASH => (),
+            Command::DIE => (),
+            Command::RESTART => (),
+            Command::SUMMON(user, target, channel) => (),//println!("SUMMON {}, {:?}, {:?}", user, target, channel),
+            Command::USERS(list) => (),//println!("USERS {:?}", list),
+            Command::WALLOPS(text) => (),//println!("WALLOPS {}", text),
+            Command::USERHOST(list) => (),//println!("USERHOST {}", list.join(", ")),
+            Command::ISON(list) => (),//println!("ISON {}", list.join(" ")),
+            Command::SAJOIN(name, channel) => (),//println!("SAJOIN {}, {}", name, channel),
+            Command::SAMODE(target, modes, params) => (),//println!("SAMODE {}, {}, {:?}", target, modes, params),
+            Command::SANICK(old, new) => (),//println!("SANICK {}, {}", old, new),
+            Command::SAPART(name, comment) => (),//println!("SAPART {} {}", name, comment),
+            Command::SAQUIT(name, comment) => (),//println!("SAQUIT {}, {}", name, comment),
+            Command::NICKSERV(msg) => (),//println!("NICKSERV {}", msg),
+            Command::CHANSERV(msg) => (),//println!("CHANSERV {}", msg),
+            Command::OPERSERV(msg) => (),//println!("OPERSERV {}", msg),
+            Command::BOTSERV(msg) => (),//println!("BOTSERV {}", msg),
+            Command::HOSTSERV(msg) => (),//println!("HOSTSERV {}", msg),
+            Command::MEMOSERV(msg) => (),//println!("MEMOSERV {}", msg),
+            Command::CAP(cmd, sub_cmd, arg, param) => (),//println!("CAP {:?}, {:?}. {:?}. {:?}", cmd, sub_cmd, arg, param),
+            Command::AUTHENTICATE(name) => (),//println!("AUTHENTICATE {}", name),
+            Command::ACCOUNT(name) => (),//println!("ACCOUNT {}", name),
             Command::METADATA(target, sub_cmd, params, param) => {
-                let params = if let Some(p) = params {
-                    p.join(", ")
-                } else {
-                    String::new()
-                };
-                println!("METADATA {} {:?}, {}, {:?}", target, sub_cmd, params, param);
+                //println!("METADATA {} {:?}, {}, {:?}", target, sub_cmd, params, param);
             },
-            Command::MONITOR(command, list) => println!("MONITOR {}, {:?}", command, list),
+            Command::MONITOR(command, list) => (),//println!("MONITOR {}, {:?}", command, list),
             Command::BATCH(operator, sub_cmd, params) => {
                 let params = if let Some(params) = params {
                     params.join(", ")
                 } else {
                     String::new()
                 };
-                println!("BATCH {} {:?}, {:?}", operator, sub_cmd, params);
+                //println!("BATCH {} {:?}, {:?}", operator, sub_cmd, params);
             },
-            Command::CHGHOST(user, host) => println!("CHGHOST {}, {}", user, host),
+            Command::CHGHOST(user, host) => (),//println!("CHGHOST {}, {}", user, host),
             Command::Response(res, args, suffix) => self.response(res, args, suffix) ,
-            Command::Raw(command, params, param) => println!("Raw {}, {}, {:?}", command, params.join(", "), param),
+            Command::Raw(command, params, param) => (),//println!("Raw {}, {}, {:?}", command, params.join(", "), param),
         }
     }
 
@@ -182,12 +185,12 @@ impl Server {
         };
         match self.channels.get_mut(&channel) {
             Some(mut ch) => {
-                let newMessage = ChannelMessage {
+                let new_message = ChannelMessage {
                     user_name,
                     content: text,
                 };
-                ch.messages.push(newMessage.clone());
-                (self.listener)(Event::NewMessage(channel, newMessage));
+                ch.messages.push(new_message.clone());
+                (self.listener)(Event::NewMessage(channel, new_message));
             },
             _ => println!("Unable to get channel {}", &channel)
         }
@@ -195,49 +198,54 @@ impl Server {
     }
 
     fn welcome(&self, args: Vec<String>, suffix: Option<String>) {
-        println!("Welcome\nargs: {:?}\nsuffix:{:?}", args.join(", "), suffix.unwrap_or(String::from("N/A")));
-        Event::Welcome;
+        (self.listener)(Event::Welcome(suffix.unwrap_or(String::new())));
     }
 
     fn response(&mut self, res: Response, args: Vec<String>, suffix: Option<String>) {
         match res {
             Response::RPL_WELCOME => self.welcome(args, suffix),
-            Response::RPL_YOURHOST => println!("RPL_YOURHOST"),
-            Response::RPL_CREATED => println!("RPL_CREATED"),
-            Response::RPL_MYINFO => println!("RPL_MYINFO"),
-            Response::RPL_ISUPPORT => println!("RPL_ISUPPORT"),
-            Response::RPL_BOUNCE => println!("RPL_BOUNCE"),
-            Response::RPL_NONE => println!("RPL_NONE"),
-            Response::RPL_USERHOST => println!("RPL_USERHOST"),
-            Response::RPL_ISON => println!("RPL_ISON"),
-            Response::RPL_AWAY => println!("RPL_AWAY"),
-            Response::RPL_UNAWAY => println!("RPL_UNAWAY"),
-            Response::RPL_NOWAWAY => println!("RPL_NOWAWAY"),
-            Response::RPL_WHOISUSER => println!("RPL_WHOISUSER"),
-            Response::RPL_WHOISSERVER => println!("RPL_WHOISSERVER"),
-            Response::RPL_WHOISOPERATOR => println!("RPL_WHOISOPERATOR"),
-            Response::RPL_WHOISIDLE => println!("RPL_WHOISIDLE"),
-            Response::RPL_ENDOFWHOIS => println!("RPL_ENDOFWHOIS"),
-            Response::RPL_WHOISCHANNELS => println!("RPL_WHOISCHANNELS"),
-            Response::RPL_WHOWASUSER => println!("RPL_WHOWASUSER"),
-            Response::RPL_ENDOFWHOWAS => println!("RPL_ENDOFWHOWAS"),
-            Response::RPL_LISTSTART => println!("RPL_LISTSTART"),
-            Response::RPL_LIST => println!("RPL_LIST"),
-            Response::RPL_LISTEND => println!("RPL_LISTEND"),
-            Response::RPL_UNIQOPIS => println!("RPL_UNIQOPIS"),
-            Response::RPL_CHANNELMODEIS => println!("RPL_CHANNELMODEIS"),
-            Response::RPL_NOTOPIC => println!("RPL_NOTOPIC"),
-            Response::RPL_TOPIC => println!("RPL_TOPIC"),
-            Response::RPL_TOPICWHOTIME => println!("RPL_TOPICWHOTIME"),
-            Response::RPL_INVITING => println!("RPL_INVITING"),
-            Response::RPL_SUMMONING => println!("RPL_SUMMONING"),
-            Response::RPL_INVITELIST => println!("RPL_INVITELIST"),
-            Response::RPL_ENDOFINVITELIST => println!("RPL_ENDOFINVITELIST"),
-            Response::RPL_EXCEPTLIST => println!("RPL_EXCEPTLIST"),
-            Response::RPL_ENDOFEXCEPTLIST => println!("RPL_ENDOFEXCEPTLIST"),
-            Response::RPL_VERSION => println!("RPL_VERSION"),
-            Response::RPL_WHOREPLY => println!("RPL_WHOREPLY"),
-            Response::RPL_ENDOFWHO => println!("RPL_ENDOFWHO"),
+            Response::RPL_YOURHOST => (self.listener)(Event::Misc(String::from("RPL_YOURHOST"), args, suffix)),
+            Response::RPL_CREATED => (self.listener)(Event::Misc(String::from("RPL_CREATED"), args, suffix)),
+            Response::RPL_MYINFO => (self.listener)(Event::Misc(String::from("RPL_MYINFO"), args, suffix)),
+            Response::RPL_ISUPPORT => (self.listener)(Event::Misc(String::from("RPL_ISUPPORT"), args, suffix)),
+            Response::RPL_BOUNCE => (self.listener)(Event::Misc(String::from("RPL_BOUNCE"), args, suffix)),
+            Response::RPL_NONE => (self.listener)(Event::Misc(String::from("RPL_NONE"), args, suffix)),
+            Response::RPL_USERHOST => (self.listener)(Event::Misc(String::from("RPL_USERHOST"), args, suffix)),
+            Response::RPL_ISON => (self.listener)(Event::Misc(String::from("RPL_ISON"), args, suffix)),
+            Response::RPL_AWAY => (self.listener)(Event::Misc(String::from("RPL_AWAY"), args, suffix)),
+            Response::RPL_UNAWAY => (self.listener)(Event::Misc(String::from("RPL_UNAWAY"), args, suffix)),
+            Response::RPL_NOWAWAY => (self.listener)(Event::Misc(String::from("RPL_NOWAWAY"), args, suffix)),
+            Response::RPL_WHOISUSER => (self.listener)(Event::Misc(String::from("RPL_WHOISUSER"), args, suffix)),
+            Response::RPL_WHOISSERVER => (self.listener)(Event::Misc(String::from("RPL_WHOISSERVER"), args, suffix)),
+            Response::RPL_WHOISOPERATOR => (self.listener)(Event::Misc(String::from("RPL_WHOISOPERATOR"), args, suffix)),
+            Response::RPL_WHOISIDLE => (self.listener)(Event::Misc(String::from("RPL_WHOISIDLE"), args, suffix)),
+            Response::RPL_ENDOFWHOIS => (self.listener)(Event::Misc(String::from("RPL_ENDOFWHOIS"), args, suffix)),
+            Response::RPL_WHOISCHANNELS => (self.listener)(Event::Misc(String::from("RPL_WHOISCHANNELS"), args, suffix)),
+            Response::RPL_WHOWASUSER => (self.listener)(Event::Misc(String::from("RPL_WHOWASUSER"), args, suffix)),
+            Response::RPL_ENDOFWHOWAS => (self.listener)(Event::Misc(String::from("RPL_ENDOFWHOWAS"), args, suffix)),
+            Response::RPL_LISTSTART => (self.listener)(Event::Misc(String::from("RPL_LISTSTART"), args, suffix)),
+            Response::RPL_LIST => (self.listener)(Event::Misc(String::from("RPL_LIST"), args, suffix)),
+            Response::RPL_LISTEND => (self.listener)(Event::Misc(String::from("RPL_LISTEND"), args, suffix)),
+            Response::RPL_UNIQOPIS => (self.listener)(Event::Misc(String::from("RPL_UNIQOPIS"), args, suffix)),
+            Response::RPL_CHANNELMODEIS => (self.listener)(Event::Misc(String::from("RPL_CHANNELMODEIS"), args, suffix)),
+            Response::RPL_NOTOPIC => (),
+            Response::RPL_TOPIC => {
+                let channel = match args.iter().last() {
+                    Some(ch) => ch,
+                    _ => "",
+                };
+                self.add_ch_topic(&channel, &suffix.unwrap_or(String::new()));
+            },
+            Response::RPL_TOPICWHOTIME => (),
+            Response::RPL_INVITING => (self.listener)(Event::Misc(String::from("RPL_INVITING"), args, suffix)),
+            Response::RPL_SUMMONING => (self.listener)(Event::Misc(String::from("RPL_SUMMONING"), args, suffix)),
+            Response::RPL_INVITELIST => (self.listener)(Event::Misc(String::from("RPL_INVITELIST"), args, suffix)),
+            Response::RPL_ENDOFINVITELIST => (self.listener)(Event::Misc(String::from("RPL_ENDOFINVITELIST"), args, suffix)),
+            Response::RPL_EXCEPTLIST => (self.listener)(Event::Misc(String::from("RPL_EXCEPTLIST"), args, suffix)),
+            Response::RPL_ENDOFEXCEPTLIST => (self.listener)(Event::Misc(String::from("RPL_ENDOFEXCEPTLIST"), args, suffix)),
+            Response::RPL_VERSION => (self.listener)(Event::Misc(String::from("RPL_VERSION"), args, suffix)),
+            Response::RPL_WHOREPLY => (self.listener)(Event::Misc(String::from("RPL_WHOREPLY"), args, suffix)),
+            Response::RPL_ENDOFWHO => (self.listener)(Event::Misc(String::from("RPL_ENDOFWHO"), args, suffix)),
             Response::RPL_NAMREPLY => {
                 let channel = args.into_iter().last().expect("can't get last arg");
                 let names = suffix.expect("names suffix is None");
@@ -254,13 +262,13 @@ impl Server {
                     None => ()
                 }
             },
-            Response::RPL_LINKS => println!("RPL_LINKS"),
-            Response::RPL_ENDOFLINKS => println!("RPL_ENDOFLINKS"),
-            Response::RPL_BANLIST => println!("RPL_BANLIST"),
-            Response::RPL_ENDOFBANLIST => println!("RPL_ENDOFBANLIST"),
-            Response::RPL_INFO => println!("RPL_INFO"),
-            Response::RPL_ENDOFINFO => println!("RPL_ENDOFINFO"),
-            Response::RPL_MOTDSTART => println!("RPL_MOTDSTART"),
+            Response::RPL_LINKS => (self.listener)(Event::Misc(String::from("RPL_LINKS"), args, suffix)),
+            Response::RPL_ENDOFLINKS => (self.listener)(Event::Misc(String::from("RPL_ENDOFLINKS"), args, suffix)),
+            Response::RPL_BANLIST => (self.listener)(Event::Misc(String::from("RPL_BANLIST"), args, suffix)),
+            Response::RPL_ENDOFBANLIST => (self.listener)(Event::Misc(String::from("RPL_ENDOFBANLIST"), args, suffix)),
+            Response::RPL_INFO => (self.listener)(Event::Misc(String::from("RPL_INFO"), args, suffix)),
+            Response::RPL_ENDOFINFO => (self.listener)(Event::Misc(String::from("RPL_ENDOFINFO"), args, suffix)),
+            Response::RPL_MOTDSTART => (),
             Response::RPL_MOTD => {
                 match suffix {
                     Some(text) => self.add_motd(text),
@@ -268,127 +276,127 @@ impl Server {
                 }
             },
             Response::RPL_ENDOFMOTD => (self.listener)(Event::MOTD(self.get_motd())),
-            Response::RPL_YOUREOPER => println!("RPL_YOUREOPER"),
-            Response::RPL_REHASHING => println!("RPL_REHASHING"),
-            Response::RPL_YOURESERVICE => println!("RPL_YOURESERVICE"),
-            Response::RPL_TIME => println!("RPL_TIME"),
-            Response::RPL_USERSSTART => println!("RPL_USERSSTART"),
-            Response::RPL_USERS => println!("RPL_USERS"),
-            Response::RPL_ENDOFUSERS => println!("RPL_ENDOFUSERS"),
-            Response::RPL_NOUSERS => println!("RPL_NOUSERS"),
-            Response::RPL_HOSTHIDDEN => println!("RPL_HOSTHIDDEN"),
-            Response::RPL_TRACELINK => println!("RPL_TRACELINK"),
-            Response::RPL_TRACECONNECTING => println!("RPL_TRACECONNECTING"),
-            Response::RPL_TRACEHANDSHAKE => println!("RPL_TRACEHANDSHAKE"),
-            Response::RPL_TRACEUKNOWN => println!("RPL_TRACEUKNOWN"),
-            Response::RPL_TRACEOPERATOR => println!("RPL_TRACEOPERATOR"),
-            Response::RPL_TRACEUSER => println!("RPL_TRACEUSER"),
-            Response::RPL_TRACESERVER => println!("RPL_TRACESERVER"),
-            Response::RPL_TRACESERVICE => println!("RPL_TRACESERVICE"),
-            Response::RPL_TRACENEWTYPE => println!("RPL_TRACENEWTYPE"),
-            Response::RPL_TRACECLASS => println!("RPL_TRACECLASS"),
-            Response::RPL_TRACERECONNECT => println!("RPL_TRACERECONNECT"),
-            Response::RPL_TRACELOG => println!("RPL_TRACELOG"),
-            Response::RPL_TRACEEND => println!("RPL_TRACEEND"),
-            Response::RPL_STATSLINKINFO => println!("RPL_STATSLINKINFO"),
-            Response::RPL_STATSCOMMANDS => println!("RPL_STATSCOMMANDS"),
-            Response::RPL_ENDOFSTATS => println!("RPL_ENDOFSTATS"),
-            Response::RPL_STATSUPTIME => println!("RPL_STATSUPTIME"),
-            Response::RPL_STATSOLINE => println!("RPL_STATSOLINE"),
-            Response::RPL_UMODEIS => println!("RPL_UMODEIS"),
-            Response::RPL_SERVLIST => println!("RPL_SERVLIST"),
-            Response::RPL_SERVLISTEND => println!("RPL_SERVLISTEND"),
-            Response::RPL_LUSERCLIENT => println!("RPL_LUSERCLIENT"),
-            Response::RPL_LUSEROP => println!("RPL_LUSEROP"),
-            Response::RPL_LUSERUNKNOWN => println!("RPL_LUSERUNKNOWN"),
-            Response::RPL_LUSERCHANNELS => println!("RPL_LUSERCHANNELS"),
-            Response::RPL_LUSERME => println!("RPL_LUSERME"),
-            Response::RPL_ADMINME => println!("RPL_ADMINME"),
-            Response::RPL_ADMINLOC1 => println!("name"),
-            Response::RPL_ADMINLOC2 => println!("name"),
-            Response::RPL_ADMINEMAIL => println!("RPL_ADMINEMAIL"),
-            Response::RPL_TRYAGAIN => println!("RPL_TRYAGAIN"),
-            Response::RPL_LOCALUSERS => println!("RPL_LOCALUSERS"),
-            Response::RPL_GLOBALUSERS => println!("RPL_GLOBALUSERS"),
-            Response::RPL_WHOISCERTFP => println!("RPL_WHOISCERTFP"),
-            Response::RPL_MONONLINE => println!("RPL_MONONLINE"),
-            Response::RPL_MONOFFLINE => println!("RPL_MONOFFLINE"),
-            Response::RPL_MONLIST => println!("RPL_MONLIST"),
-            Response::RPL_ENDOFMONLIST => println!("RPL_ENDOFMONLIST"),
-            Response::RPL_WHOISKEYVALUE => println!("RPL_WHOISKEYVALUE"),
-            Response::RPL_KEYVALUE => println!("RPL_KEYVALUE"),
-            Response::RPL_METADATAEND => println!("RPL_METADATAEND"),
-            Response::RPL_LOGGEDIN => println!("RPL_LOGGEDIN"),
-            Response::RPL_LOGGEDOUT => println!("RPL_LOGGEDOUT"),
-            Response::RPL_SASLSUCCESS => println!("RPL_SASLSUCCESS"),
-            Response::RPL_SASLMECHS => println!("RPL_SASLMECHS"),
-            Response::ERR_UNKNOWNERROR => println!("name"),
-            Response::ERR_NOSUCHNICK => println!("name"),
-            Response::ERR_NOSUCHSERVER => println!("name"),
-            Response::ERR_NOSUCHCHANNEL => println!("name"),
-            Response::ERR_CANNOTSENDTOCHAN => println!("name"),
-            Response::ERR_TOOMANYCHANNELS => println!("name"),
-            Response::ERR_WASNOSUCHNICK => println!("name"),
-            Response::ERR_TOOMANYTARGETS => println!("name"),
-            Response::ERR_NOSUCHSERVICE => println!("name"),
-            Response::ERR_NOORIGIN => println!("name"),
-            Response::ERR_NORECIPIENT => println!("name"),
-            Response::ERR_NOTEXTTOSEND => println!("name"),
-            Response::ERR_NOTOPLEVEL => println!("name"),
-            Response::ERR_WILDTOPLEVEL => println!("name"),
-            Response::ERR_BADMASK => println!("name"),
-            Response::ERR_UNKNOWNCOMMAND => println!("name"),
-            Response::ERR_NOMOTD => println!("name"),
-            Response::ERR_NOADMININFO => println!("name"),
-            Response::ERR_FILEERROR => println!("name"),
-            Response::ERR_NONICKNAMEGIVEN => println!("name"),
-            Response::ERR_ERRONEOUSNICKNAME => println!("name"),
-            Response::ERR_NICKNAMEINUSE => println!("name"),
-            Response::ERR_NICKCOLLISION => println!("name"),
-            Response::ERR_UNAVAILRESOURCE => println!("name"),
-            Response::ERR_USERNOTINCHANNEL => println!("name"),
-            Response::ERR_NOTONCHANNEL => println!("name"),
-            Response::ERR_USERONCHANNEL => println!("name"),
-            Response::ERR_NOLOGIN => println!("name"),
-            Response::ERR_SUMMONDISABLED => println!("name"),
-            Response::ERR_USERSDISABLED => println!("name"),
-            Response::ERR_NOTREGISTERED => println!("name"),
-            Response::ERR_NEEDMOREPARAMS => println!("name"),
-            Response::ERR_ALREADYREGISTRED => println!("name"),
-            Response::ERR_NOPERMFORHOST => println!("name"),
-            Response::ERR_PASSWDMISMATCH => println!("name"),
-            Response::ERR_YOUREBANNEDCREEP => println!("name"),
-            Response::ERR_YOUWILLBEBANNED => println!("name"),
-            Response::ERR_KEYSET => println!("name"),
-            Response::ERR_CHANNELISFULL => println!("name"),
-            Response::ERR_UNKNOWNMODE => println!("name"),
-            Response::ERR_INVITEONLYCHAN => println!("name"),
-            Response::ERR_BANNEDFROMCHAN => println!("name"),
-            Response::ERR_BADCHANNELKEY => println!("name"),
-            Response::ERR_BADCHANMASK => println!("name"),
-            Response::ERR_NOCHANMODES => println!("name"),
-            Response::ERR_BANLISTFULL => println!("name"),
-            Response::ERR_NOPRIVILEGES => println!("name"),
-            Response::ERR_CHANOPRIVSNEEDED => println!("name"),
-            Response::ERR_CANTKILLSERVER => println!("name"),
-            Response::ERR_RESTRICTED => println!("name"),
-            Response::ERR_UNIQOPPRIVSNEEDED => println!("name"),
-            Response::ERR_NOOPERHOST => println!("name"),
-            Response::ERR_UMODEUNKNOWNFLAG => println!("name"),
-            Response::ERR_USERSDONTMATCH => println!("name"),
-            Response::ERR_NOPRIVS => println!("name"),
-            Response::ERR_MONLISTFULL => println!("name"),
-            Response::ERR_METADATALIMIT => println!("name"),
-            Response::ERR_TARGETINVALID => println!("name"),
-            Response::ERR_NOMATCHINGKEY => println!("name"),
-            Response::ERR_KEYINVALID => println!("name"),
-            Response::ERR_KEYNOTSET => println!("name"),
-            Response::ERR_KEYNOPERMISSION => println!("name"),
-            Response::ERR_NICKLOCKED => println!("name"),
-            Response::ERR_SASLFAIL => println!("name"),
-            Response::ERR_SASLTOOLONG => println!("name"),
-            Response::ERR_SASLABORT => println!("name"),
-            Response::ERR_SASLALREADY => println!("name"),
+            Response::RPL_YOUREOPER => (self.listener)(Event::Misc(String::from("RPL_YOUREOPER"), args, suffix)),
+            Response::RPL_REHASHING => (self.listener)(Event::Misc(String::from("RPL_REHASHING"), args, suffix)),
+            Response::RPL_YOURESERVICE => (self.listener)(Event::Misc(String::from("RPL_YOURESERVICE"), args, suffix)),
+            Response::RPL_TIME => (self.listener)(Event::Misc(String::from("RPL_TIME"), args, suffix)),
+            Response::RPL_USERSSTART => (self.listener)(Event::Misc(String::from("RPL_USERSSTART"), args, suffix)),
+            Response::RPL_USERS => (self.listener)(Event::Misc(String::from("RPL_USERS"), args, suffix)),
+            Response::RPL_ENDOFUSERS => (self.listener)(Event::Misc(String::from("RPL_ENDOFUSERS"), args, suffix)),
+            Response::RPL_NOUSERS => (self.listener)(Event::Misc(String::from("RPL_NOUSERS"), args, suffix)),
+            Response::RPL_HOSTHIDDEN => (self.listener)(Event::Misc(String::from("RPL_HOSTHIDDEN"), args, suffix)),
+            Response::RPL_TRACELINK => (self.listener)(Event::Misc(String::from("RPL_TRACELINK"), args, suffix)),
+            Response::RPL_TRACECONNECTING => (self.listener)(Event::Misc(String::from("RPL_TRACECONNECTING"), args, suffix)),
+            Response::RPL_TRACEHANDSHAKE => (self.listener)(Event::Misc(String::from("RPL_TRACEHANDSHAKE"), args, suffix)),
+            Response::RPL_TRACEUKNOWN => (self.listener)(Event::Misc(String::from("RPL_TRACEUKNOWN"), args, suffix)),
+            Response::RPL_TRACEOPERATOR => (self.listener)(Event::Misc(String::from("RPL_TRACEOPERATOR"), args, suffix)),
+            Response::RPL_TRACEUSER => (self.listener)(Event::Misc(String::from("RPL_TRACEUSER"), args, suffix)),
+            Response::RPL_TRACESERVER => (self.listener)(Event::Misc(String::from("RPL_TRACESERVER"), args, suffix)),
+            Response::RPL_TRACESERVICE => (self.listener)(Event::Misc(String::from("RPL_TRACESERVICE"), args, suffix)),
+            Response::RPL_TRACENEWTYPE => (self.listener)(Event::Misc(String::from("RPL_TRACENEWTYPE"), args, suffix)),
+            Response::RPL_TRACECLASS => (self.listener)(Event::Misc(String::from("RPL_TRACECLASS"), args, suffix)),
+            Response::RPL_TRACERECONNECT => (self.listener)(Event::Misc(String::from("RPL_TRACERECONNECT"), args, suffix)),
+            Response::RPL_TRACELOG => (self.listener)(Event::Misc(String::from("RPL_TRACELOG"), args, suffix)),
+            Response::RPL_TRACEEND => (self.listener)(Event::Misc(String::from("RPL_TRACEEND"), args, suffix)),
+            Response::RPL_STATSLINKINFO => (self.listener)(Event::Misc(String::from("RPL_STATSLINKINFO"), args, suffix)),
+            Response::RPL_STATSCOMMANDS => (self.listener)(Event::Misc(String::from("RPL_STATSCOMMANDS"), args, suffix)),
+            Response::RPL_ENDOFSTATS => (self.listener)(Event::Misc(String::from("RPL_ENDOFSTATS"), args, suffix)),
+            Response::RPL_STATSUPTIME => (self.listener)(Event::Misc(String::from("RPL_STATSUPTIME"), args, suffix)),
+            Response::RPL_STATSOLINE => (self.listener)(Event::Misc(String::from("RPL_STATSOLINE"), args, suffix)),
+            Response::RPL_UMODEIS => (self.listener)(Event::Misc(String::from("RPL_UMODEIS"), args, suffix)),
+            Response::RPL_SERVLIST => (self.listener)(Event::Misc(String::from("RPL_SERVLIST"), args, suffix)),
+            Response::RPL_SERVLISTEND => (self.listener)(Event::Misc(String::from("RPL_SERVLISTEND"), args, suffix)),
+            Response::RPL_LUSERCLIENT => (self.listener)(Event::Misc(String::from("RPL_LUSERCLIENT"), args, suffix)),
+            Response::RPL_LUSEROP => (self.listener)(Event::Misc(String::from("RPL_LUSEROP"), args, suffix)),
+            Response::RPL_LUSERUNKNOWN => (self.listener)(Event::Misc(String::from("RPL_LUSERUNKNOWN"), args, suffix)),
+            Response::RPL_LUSERCHANNELS => (self.listener)(Event::Misc(String::from("RPL_LUSERCHANNELS"), args, suffix)),
+            Response::RPL_LUSERME => (self.listener)(Event::Misc(String::from("RPL_LUSERME"), args, suffix)),
+            Response::RPL_ADMINME => (self.listener)(Event::Misc(String::from("RPL_ADMINME"), args, suffix)),
+            Response::RPL_ADMINLOC1 => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::RPL_ADMINLOC2 => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::RPL_ADMINEMAIL => (self.listener)(Event::Misc(String::from("RPL_ADMINEMAIL"), args, suffix)),
+            Response::RPL_TRYAGAIN => (self.listener)(Event::Misc(String::from("RPL_TRYAGAIN"), args, suffix)),
+            Response::RPL_LOCALUSERS => (self.listener)(Event::Misc(String::from("RPL_LOCALUSERS"), args, suffix)),
+            Response::RPL_GLOBALUSERS => (self.listener)(Event::Misc(String::from("RPL_GLOBALUSERS"), args, suffix)),
+            Response::RPL_WHOISCERTFP => (self.listener)(Event::Misc(String::from("RPL_WHOISCERTFP"), args, suffix)),
+            Response::RPL_MONONLINE => (self.listener)(Event::Misc(String::from("RPL_MONONLINE"), args, suffix)),
+            Response::RPL_MONOFFLINE => (self.listener)(Event::Misc(String::from("RPL_MONOFFLINE"), args, suffix)),
+            Response::RPL_MONLIST => (self.listener)(Event::Misc(String::from("RPL_MONLIST"), args, suffix)),
+            Response::RPL_ENDOFMONLIST => (self.listener)(Event::Misc(String::from("RPL_ENDOFMONLIST"), args, suffix)),
+            Response::RPL_WHOISKEYVALUE => (self.listener)(Event::Misc(String::from("RPL_WHOISKEYVALUE"), args, suffix)),
+            Response::RPL_KEYVALUE => (self.listener)(Event::Misc(String::from("RPL_KEYVALUE"), args, suffix)),
+            Response::RPL_METADATAEND => (self.listener)(Event::Misc(String::from("RPL_METADATAEND"), args, suffix)),
+            Response::RPL_LOGGEDIN => (self.listener)(Event::Misc(String::from("RPL_LOGGEDIN"), args, suffix)),
+            Response::RPL_LOGGEDOUT => (self.listener)(Event::Misc(String::from("RPL_LOGGEDOUT"), args, suffix)),
+            Response::RPL_SASLSUCCESS => (self.listener)(Event::Misc(String::from("RPL_SASLSUCCESS"), args, suffix)),
+            Response::RPL_SASLMECHS => (self.listener)(Event::Misc(String::from("RPL_SASLMECHS"), args, suffix)),
+            Response::ERR_UNKNOWNERROR => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NOSUCHNICK => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NOSUCHSERVER => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NOSUCHCHANNEL => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_CANNOTSENDTOCHAN => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_TOOMANYCHANNELS => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_WASNOSUCHNICK => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_TOOMANYTARGETS => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NOSUCHSERVICE => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NOORIGIN => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NORECIPIENT => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NOTEXTTOSEND => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NOTOPLEVEL => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_WILDTOPLEVEL => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_BADMASK => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_UNKNOWNCOMMAND => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NOMOTD => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NOADMININFO => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_FILEERROR => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NONICKNAMEGIVEN => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_ERRONEOUSNICKNAME => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NICKNAMEINUSE => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NICKCOLLISION => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_UNAVAILRESOURCE => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_USERNOTINCHANNEL => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NOTONCHANNEL => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_USERONCHANNEL => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NOLOGIN => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_SUMMONDISABLED => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_USERSDISABLED => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NOTREGISTERED => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NEEDMOREPARAMS => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_ALREADYREGISTRED => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NOPERMFORHOST => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_PASSWDMISMATCH => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_YOUREBANNEDCREEP => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_YOUWILLBEBANNED => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_KEYSET => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_CHANNELISFULL => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_UNKNOWNMODE => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_INVITEONLYCHAN => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_BANNEDFROMCHAN => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_BADCHANNELKEY => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_BADCHANMASK => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NOCHANMODES => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_BANLISTFULL => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NOPRIVILEGES => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_CHANOPRIVSNEEDED => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_CANTKILLSERVER => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_RESTRICTED => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_UNIQOPPRIVSNEEDED => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NOOPERHOST => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_UMODEUNKNOWNFLAG => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_USERSDONTMATCH => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NOPRIVS => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_MONLISTFULL => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_METADATALIMIT => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_TARGETINVALID => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NOMATCHINGKEY => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_KEYINVALID => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_KEYNOTSET => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_KEYNOPERMISSION => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_NICKLOCKED => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_SASLFAIL => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_SASLTOOLONG => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_SASLABORT => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
+            Response::ERR_SASLALREADY => (self.listener)(Event::Misc(String::from("name"), args, suffix)),
         }
     }
 }
@@ -396,6 +404,8 @@ impl Server {
 impl Channel {
     pub fn new() -> Self {
         Channel {
+            name: String::new(),
+            topic: String::new(),
             users: HashSet::new(),
             messages: Vec::new(),
         }
