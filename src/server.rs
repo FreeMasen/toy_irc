@@ -1,5 +1,6 @@
 use std::collections::{HashMap};
 use std::fmt::{Debug, Result, Formatter};
+use std::time::{SystemTime, UNIX_EPOCH, Duration};
 
 use irc::client::prelude::*;
 use serde_json::to_string;
@@ -10,11 +11,19 @@ use channel::{ChannelMessage, Channel};
 #[derive(Serialize)]
 pub struct Server {
     welcome_msg: String,
-    is_connected: bool,
+    connection_status: ConnectionStatus,
     motd: String,
     channels: HashMap<String, Channel>,
     #[serde(skip)]
     listener: Box<Fn(Event)>
+}
+
+#[derive(Serialize)]
+pub enum ConnectionStatus {
+    NotConnected,
+    Authenticating,
+    Connected,
+    Idle
 }
 
 impl Debug for Server {
@@ -27,7 +36,7 @@ impl Server {
     pub fn new() -> Server {
         Server {
             welcome_msg: String::new(),
-            is_connected: true,
+            connection_status: ConnectionStatus::NotConnected,
             motd: String::new(),
             channels: HashMap::new(),
             listener: Box::new(|_|{}),
@@ -110,7 +119,16 @@ impl Server {
                 self.remove_user(&user_name);
             },
             Command::SQUIT(server, comment) => (self.listener)(Event::Misc(msg.prefix, String::from("SQUIT"), vec![server, comment], None)),
-            Command::JOIN(list, keys, realname) => (self.listener)(Event::Misc(msg.prefix, String::from("JOIN"), vec![list, keys.unwrap_or(String::new()), realname.unwrap_or(String::new())], None)),
+            Command::JOIN(list, keys, realname) => {
+                let user_name = match msg.prefix {
+                    Some(p) => {
+                        let parts: Vec<&str> = p.split('!').collect();
+                        String::from(parts[0])
+                    },
+                    None => String::new()
+                };
+                self.add_users(&list, &user_name);
+            },
             Command::PART(list, comment) => (self.listener)(Event::Misc(msg.prefix, String::from("PART"), vec![list, comment.unwrap_or(String::new())], None)),
             Command::ChannelMODE(channel, modes) => (self.listener)(Event::Misc(msg.prefix, String::from("ChannelMODE"), vec![channel, modes.iter().map(|m|format!("{:?}", m)).collect::<Vec<String>>().join(", ")], None)),
             Command::TOPIC(channel, topic) => (self.listener)(Event::Misc(msg.prefix, String::from("TOPIC"), vec![channel, topic.unwrap_or(String::new())], None)),
@@ -119,7 +137,13 @@ impl Server {
             Command::INVITE(nickname, channel) => (self.listener)(Event::Misc(msg.prefix, String::from("INVITE"),vec![nickname, channel], None)),
             Command::KICK(list, user_list, comment) => (self.listener)(Event::Misc(msg.prefix, String::from("KICK"), vec![list, user_list, comment.unwrap_or(String::new())], None)),
             Command::PRIVMSG(target, text) => self.new_message(msg.prefix, target, text),
-            Command::NOTICE(target, text) => (self.listener)(Event::Misc(msg.prefix, String::from("NOTICE"), vec![target, text], None)),
+            Command::NOTICE(target, text) => {
+                if &target == "AUTH" {
+                    self.connection_status = ConnectionStatus::Authenticating;
+                } else {
+                    (self.listener)(Event::Misc(msg.prefix, String::from("NOTICE"), vec![target, text], None))
+                }
+            },
             Command::MOTD(target) => (self.listener)(Event::Misc(msg.prefix, String::from("MOTD"), vec![target.unwrap_or(String::new())], None)),
             Command::LUSERS(mask, target) => (self.listener)(Event::Misc(msg.prefix, String::from("LUSERS"), vec![mask.unwrap_or(String::new()), target.unwrap_or(String::new())], None)),
             Command::VERSION(version) => (self.listener)(Event::Misc(msg.prefix, String::from("VERSION"), vec![version.unwrap_or(String::new())], None)),
@@ -189,8 +213,9 @@ impl Server {
         };
         match self.channels.get_mut(&channel) {
             Some(ch) => {
+                let time_stamp = SystemTime::now().duration_since(UNIX_EPOCH).unwrap_or(Duration::new(0, 0)).as_secs();
                 let new_message = ChannelMessage {
-                    time_stamp: String::new(),
+                    time_stamp: format!("{}", time_stamp),
                     user_name: user_name,
                     content: text,
                 };
@@ -207,7 +232,7 @@ impl Server {
             Response::RPL_WELCOME => {
                 let msg = suffix.unwrap_or(String::new());
                 self.add_welcome(&msg);
-                self.is_connected = true;
+                self.connection_status = ConnectionStatus::Connected;
                 (self.listener)(Event::Welcome(msg))
             }
             Response::RPL_AWAY => (self.listener)(Event::Misc(None, String::from("RPL_AWAY"), args, suffix)),
@@ -271,7 +296,7 @@ impl Server {
                     _ => ()
                 }
             },
-            Response::RPL_ENDOFMOTD => (self.listener)(Event::MOTD(self.get_motd())),
+            Response::RPL_ENDOFMOTD => (self.listener)(Event::Motd(self.get_motd())),
             Response::RPL_YOUREOPER => (self.listener)(Event::Misc(None, String::from("RPL_YOUREOPER"), args, suffix)),
             Response::RPL_REHASHING => (self.listener)(Event::Misc(None, String::from("RPL_REHASHING"), args, suffix)),
             Response::RPL_YOURESERVICE => (self.listener)(Event::Misc(None, String::from("RPL_YOURESERVICE"), args, suffix)),

@@ -11,9 +11,9 @@ use irc::client::prelude::*;
 use serde_json::to_string;
 
 fn main() {
-    print!("[\"started\"");
+    print!("[{{\"type\": \"started\", \"args\": []}}");
     let config = Config {
-        nickname: Some("rubot".to_owned()),
+        nickname: Some("fruitbot".to_owned()),
         server: Some("irc.mozilla.org".to_owned()),
         channels: Some(vec!["#rust".to_owned(), "#rust_embedded".to_owned()]),
         ..Config::default()

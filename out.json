@@ -1,0 +1,6402 @@
+[
+    {
+        "type": "started",
+        "args": []
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "NOTICE",
+            [
+                "Auth",
+                "*** Looking up your hostname..."
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "NOTICE",
+            [
+                "Auth",
+                "*** Found your hostname (c-24-118-135-244.hsd1.mn.comcast.net) -- cached"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "NOTICE",
+            [
+                "Auth",
+                "Welcome to \u0002Mozilla\u0002!"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "welcome",
+        "args": "Welcome to the Mozilla IRC Network fruitbot!fruitbot@c-24-118-135-244.hsd1.mn.comcast.net"
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "Raw",
+            [
+                "042",
+                "fruitbot, 557AAWVXO",
+                "your unique ID"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "motd",
+        "args": "-                      __          _\n-                     / /__ _   __(_)___\n-                    / / _ \\ | / / / __ \\\n-             / /  __/ |/ / / / / /\n-                  /_/\\___/|___/_/_/ /_/\n- \n-               M O Z I L L A   D O T   O R G\n-                 https://www.mozilla.org/\n- \n- =================================================================\n-  This server is for use by Mozilla developers, testers, and\n-  users. If you are not one, please find another server.\n- \n-  NOTICE: Your IP address will be portscanned by our open\n-  proxy tester.  See https://wiki.mozilla.org/IRC for details.\n- \n- =================================================================\n-  Project information:\n-   Firefox   https://support.mozilla.org/\n-   Mobile                 https://support.mozilla.org/mobile\n-   Thunderbird            https://support.mozilla.org/products/thunderbird\n-  \n-  Help for new contributors:\n-   https://developer.mozilla.org/Introduction\n-  \n- =================================================================\n-  Ports:\n-   Non-SSL: 6665 - 6669\n-       SSL: 6697, 8443\n- =================================================================\n- \n-  For a list of other helpful channels please visit\n-  https://wiki.mozilla.org/IRC or use the /list command.\n-  Additional help with IRC at http://www.irchelp.org/\n- \n"
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "RPL_LUSERCLIENT",
+            [
+                "fruitbot"
+            ],
+            "There are 5092 users and 701 invisible on 4 servers"
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "RPL_LUSEROP",
+            [
+                "fruitbot",
+                "13"
+            ],
+            "operator(s) online"
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "RPL_LUSERCHANNELS",
+            [
+                "fruitbot",
+                "1820"
+            ],
+            "channels formed"
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "RPL_LUSERME",
+            [
+                "fruitbot"
+            ],
+            "I have 2416 clients and 1 servers"
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "RPL_LOCALUSERS",
+            [
+                "fruitbot"
+            ],
+            "Current Local Users: 2416  Max: 2793"
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "RPL_GLOBALUSERS",
+            [
+                "fruitbot"
+            ],
+            "Current Global Users: 5793  Max: 7123"
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "RPL_HOSTHIDDEN",
+            [
+                "fruitbot",
+                "moz-2938ok.mn.comcast.net"
+            ],
+            "is now your displayed host"
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "fruitbot!fruitbot@moz-2938ok.mn.comcast.net",
+            "UserMODE",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-users",
+        "args": [
+            "#rust",
+            1267
+        ]
+    },
+    {
+        "type": "new-users",
+        "args": [
+            "#rust_embedded",
+            3
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523416785"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523416965"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523417145"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523417325"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523417505"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "monad!monad@moz-9js5rl.9un8.titm.1700.2600.IP",
+            "NICK",
+            [
+                "monad_is_out"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523417685"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523417865"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "ChanServ!services@ircservices.mozilla.org",
+            "ChannelMODE",
+            [
+                "#rust",
+                "Plus(Admin, Some(\"pcwalton\")), Plus(Oper, Some(\"pcwalton\"))"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523418045"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523418225"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523418405"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523418585"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523418749",
+                "user_name": "Ralith",
+                "content": "Cetra: have you imported the trait?"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523418765"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523418782",
+                "user_name": "Cetra",
+                "content": "Yeah, I did, I worked around it by double boxing"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523418801",
+                "user_name": "Cetra",
+                "content": "so instead of (*fut).and_then()"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523418811",
+                "user_name": "Cetra",
+                "content": "I do Box::new(fut.and_then())"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523418833",
+                "user_name": "Cetra",
+                "content": "which isn't ideal, but I can't work out how to unbox a Future and then return a new box with a different future return type"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523418945"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523419125"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523419287",
+                "user_name": "Ralith",
+                "content": "you, uh, can't move a trait object out of a box, generally speaking"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523419305"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523419386",
+                "user_name": "Cetra",
+                "content": "so double boxing is the way to go?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523419399",
+                "user_name": "Cetra",
+                "content": "Unless I provide a struct which impls Future I guess"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523419485"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523419666"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "npmccallum_!npmccallum@moz-a3aruf.wlfrct.sbcglobal.net",
+            "NICK",
+            [
+                "npmccallum"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523419764",
+                "user_name": "Ralith",
+                "content": "either implement `Future` by hand, use an existing impl, contrive to avoid returning a future at all, or use `impl Trait`"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523419846"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523420026"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523420206"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523420386"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523420566"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523420746"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523420926"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523421007",
+                "user_name": "ebulkin",
+                "content": "impl trait is due to be stabilized soon, isn't it?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523421031",
+                "user_name": "scottmcm",
+                "content": "May 10th, iirc"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523421106"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523421128",
+                "user_name": "Cetra",
+                "content": "can I use impl Trait with returning futures instead of lots of boxes?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523421151",
+                "user_name": "ebulkin",
+                "content": "Cetra: I believe so"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523421153",
+                "user_name": "Cetra",
+                "content": "I thought there were some restrictions on the initial implementation that made it a bit unergonomic for futures"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523421162",
+                "user_name": "_habnabit",
+                "content": "Cetra, it's fine now afaik"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523421167",
+                "user_name": "ebulkin",
+                "content": "I thought impl Trait was one of the things that would make futures actually ergonomic"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523421168",
+                "user_name": "_habnabit",
+                "content": "Cetra, i haven't had any issue"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523421181",
+                "user_name": "ebulkin",
+                "content": "I have not played around with futures much so I can't confirm"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523421214",
+                "user_name": "Cetra",
+                "content": "I have lots of Box<Future> return types for functions, so I'm hoping that it's a matter of just adjusting that and not returning boxes"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523421255",
+                "user_name": "ebulkin",
+                "content": "I think you can just return impl Future"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523421286"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523421466"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523421646"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523421699",
+                "user_name": "_habnabit",
+                "content": "you still have to indicate Item/Error of course"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523421826"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523422006"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523422186"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523422366"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523422546"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523422726"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523422906"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523423086"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523423266"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523423446"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523423626"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523423806"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523423986"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523424166"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523424346"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "chris_!chris@moz-o8466e.106f.npme.0281.2601.IP",
+            "NICK",
+            [
+                "xionbox"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523424526"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "xionbox!chris@moz-o8466e.106f.npme.0281.2601.IP",
+            "NICK",
+            [
+                "chris_"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523424638",
+                "user_name": "glandium",
+                "content": "crate B optionally depends on crate A, meaning you can build it with --features A ; crate C depends on both A and B. shouldn't feature A of B be enabled by default?"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523424706"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523424809",
+                "user_name": "xionbox",
+                "content": "Hi there. I'm having an issue implementing a trait. I get an error E0049 which says that I'm not implementing a type parameter. I'm using nalgebra, and I genuinely don't understand why cargo is complaining. I'm using in a very similar way to what I know works... https://gist.github.com/ChristopherRabotin/6d49e97a39eb8d9b3231f2cb813a2e3b "
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523424854",
+                "user_name": "xionbox",
+                "content": "Note that Vector6<f64> is a shortcut for VectorN<f64, U6>, and U6 implements \"Dim\" and \"DimName\". That's why I don't understand why I'm getting this error"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523424860",
+                "user_name": "Mutabah",
+                "content": "xionbox: The method `state` in the trait is defined as being generic"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523424886"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523424918",
+                "user_name": "xionbox",
+                "content": "Mutabah: So I can't force \"TwoBody\" dynamics to only be a Vector6? It must be a VectorN ?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523424940",
+                "user_name": "glandium",
+                "content": "xionbox: seems like you want to use an associated trait"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523424950",
+                "user_name": "glandium",
+                "content": "*type"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523424953",
+                "user_name": "glandium",
+                "content": "associated type"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523424956",
+                "user_name": "glandium",
+                "content": "on the Dynamics trait"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523424995",
+                "user_name": "glandium",
+                "content": "so instead of having generic methods returning a VectorN<f64, N>, they'd be returning the associated type"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523424998",
+                "user_name": "TodayIAmARustNoob",
+                "content": "Does rust have a operator like '<-'?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425006",
+                "user_name": "xionbox",
+                "content": "glandium: so I'd define `type N;` in the Dynamics trait.And in the implementation I would code `type N = U6;` ?"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425015",
+                "user_name": "scottmcm",
+                "content": "TodayIAmARustNoob: what are you trying to do?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425018",
+                "user_name": "TodayIAmARustNoob",
+                "content": "I could have sworn I saw that go by a couple of days ago, but I didn't not where I saw it."
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425019",
+                "user_name": "glandium",
+                "content": "xionbox: yes"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425026",
+                "user_name": "TodayIAmARustNoob",
+                "content": "scottmcm: learn."
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425027",
+                "user_name": "xionbox",
+                "content": "glandium: okay, thanks, I'll try that out"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425030",
+                "user_name": "Mutabah",
+                "content": "TodayIAmARustNoob: That operator used to be for placement new"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425042",
+                "user_name": "Mutabah",
+                "content": "TodayIAmARustNoob: it was removed from nightly about a week ago"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523425066"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425072",
+                "user_name": "TodayIAmARustNoob",
+                "content": "Mutabah: ah, thanks.  (What is \"placement new\"?)"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425127",
+                "user_name": "Mutabah",
+                "content": "TodayIAmARustNoob: The ability to construct an object inpre-allocated memory"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425151",
+                "user_name": "TodayIAmARustNoob",
+                "content": "ah.  thanks!"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425151",
+                "user_name": "Mutabah",
+                "content": "s/new/in/ (iirc \"placement in\" was the actual name of the feature)"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425176",
+                "user_name": "TodayIAmARustNoob",
+                "content": "ah, okay.  That makes more sense.  Thanks!"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523425246"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425347",
+                "user_name": "TodayIAmARustNoob",
+                "content": "Ah, that's where I saw it, the first-book.  Makes sense why I couldn't find it in the second book!  https://doc.rust-lang.org/reference/expressions.html"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523425426"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425462",
+                "user_name": "xionbox",
+                "content": "glandium: awesome thank you, that seems to work! (well, I have other compilation errors but they are unrelated)"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523425606"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425690",
+                "user_name": "xionbox",
+                "content": "Can I use a trait function as a parameter of type Fn ?"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425736",
+                "user_name": "xionbox",
+                "content": "I get the following error: error[E0615]: attempted to take value of method `eom` on type `nyx::dynamics::celestial::TwoBody` when I attempt to use it"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425760",
+                "user_name": "SpaceManiac",
+                "content": "xionbox: you can't turn `thing.method` into a Fn, but you can `Trait::method`"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523425786"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425817",
+                "user_name": "xionbox",
+                "content": "SpaceManiac: okay. Now, if I do Trait::method, then I cannot use the specific data from an instance of that trait. Right?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425832",
+                "user_name": "SpaceManiac",
+                "content": "You'd have to arrange for it to be passed"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425840",
+                "user_name": "SpaceManiac",
+                "content": "Alternatively, a closure: |arg| thing.method(arg)"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425852",
+                "user_name": "xionbox",
+                "content": "Oh yeah, that's clever"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425891",
+                "user_name": "icasdri",
+                "content": "Hello! I'm running into \"can't find crate for compiler_builtins\" on nightly when compiling a (statically linked) crate for a non-standard target."
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425895",
+                "user_name": "icasdri",
+                "content": "It used to be (around a month ago) just \"can't find crate for core\" which I fixed by manually compiling libcore and forcing cargo to use a wrapper rustc that passed -L."
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425900",
+                "user_name": "icasdri",
+                "content": "However, this doesn't seem to work for compiler_builtins:/ I can successfully manually compile libcompiler_builtins, but doing the same wrapper -L trick does not cause cargo to find it."
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425912",
+                "user_name": "luke_nukem[m]-M",
+                "content": "A question for the ages: If I have a lib that has \"cydylib\", \"static\", and \"rlib\" defined in the toml, how can I over-ride the crate-type with cargo so that lto can be run for the non-rlib targets?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425913",
+                "user_name": "glandium",
+                "content": "SpaceManiac: I wonder if it wouldn't be useful for thing.method to be automatically desugared to |arg, ...| thing.method(arg, ...)"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425931",
+                "user_name": "luke_nukem[m]-M",
+                "content": "Without dumping down to manual compile with rustc only..."
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425947",
+                "user_name": "SpaceManiac",
+                "content": "luke_nukem[m]-M: `cargo rustc` probably"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523425965",
+                "user_name": "glandium",
+                "content": "icasdri: https://users.rust-lang.org/t/psa-breaking-change-extern-crate-compiler-builtins-is-now-included-in-no-std-crates/16704"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523425966"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523426009",
+                "user_name": "glandium",
+                "content": "luke_nukem[m]-M: afaik, you can't"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523426028",
+                "user_name": "icasdri",
+                "content": "glandium: thanks for the link!"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523426146"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523426288",
+                "user_name": "luke_nukem[m]-M",
+                "content": "glandium: cargo needs a crate-type override... Damn it. So I have to manually remove \"rlib\" when I want to to a specific build."
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523426326"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523426333",
+                "user_name": "luke_nukem[m]-M",
+                "content": "Oh wait... I can perhaps specify crate type depending on the target."
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523426506"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523426686"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523426706",
+                "user_name": "luke_nukem[m]-M",
+                "content": "No go - warning: unused manifest key: target.wasm32-unknown-emscripten.crate-type"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523426866"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523427046"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523427204",
+                "user_name": "Arnavion",
+                "content": "You could   #![cfg_attr(target = \"...\", crate_type = \"...\")]   but I don't know if rustc will take that to override what cargo gives it on the commandline"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523427226"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523427331",
+                "user_name": "glandium",
+                "content": "Arnavion: it doesn't"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523427339",
+                "user_name": "glandium",
+                "content": "which is annoying"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523427398",
+                "user_name": "Arnavion",
+                "content": "What does it do? Complain about the conflict or just ignore the attribute?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523427406",
+                "user_name": "glandium",
+                "content": "Arnavion: the latter"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523427406"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523427410",
+                "user_name": "Arnavion",
+                "content": "Sucks"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523427586"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523427766"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523427946"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523428048",
+                "user_name": "luke_nukem[m]-M",
+                "content": "Highly annoying. Forces you to do all sorts of gymnastics to get a crate building for static/cdylib and wasm."
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523428088",
+                "user_name": "luke_nukem[m]-M",
+                "content": "Going to attempt bunging a \"main()\" in the libunder a feature flag and see if that helps (with associated [[bin]] in toml)"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523428126"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "o0ignition0o_!o0ignition0@moz-sshmrl.rev.sfr.net",
+            "NICK",
+            [
+                "o0ignition0o"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523428306"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523428486"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523428666"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523428846"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523429026"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523429034",
+                "user_name": "nick_",
+                "content": "tools for identifying the cause of code in a loop running slower when other code is added to the loop? Presumably it might be something like the cpu cache, if so is there any way to reduce the loss?(1ms to 4ms)"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523429178",
+                "user_name": "glandium",
+                "content": "nick_: perf?"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523429206"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523429211",
+                "user_name": "glandium",
+                "content": "callgrind, too"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523429290",
+                "user_name": "nick_",
+                "content": "those show time spent executing something right?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523429324",
+                "user_name": "nick_",
+                "content": "or is there a way to get more info to understand why the added code is affecting the same code I'm measuring that isn't changed in my loop?"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523429371",
+                "user_name": "glandium",
+                "content": "nick_: look at the compiled code?"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523429386"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523429451",
+                "user_name": "nick_",
+                "content": "I'm not sure if it's due to compiler, when I had similar issue, I did a basic version in godbolt and it only seemed to add one extra instruction between my code and the added code in the loop"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523429560",
+                "user_name": "The_8472",
+                "content": "nick_, you can measure various things with perf, including cache misses"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523429566"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523429596",
+                "user_name": "The_8472",
+                "content": "write a microbenchmark that tortures that loop and thencompare aggregate stats"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523429610",
+                "user_name": "glandium",
+                "content": "O_o moving code from one module to another broke type inference within that code"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523429640",
+                "user_name": "glandium",
+                "content": "ah no, I had a duplicate line"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523429746"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523429926"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523430106"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523430286"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523430466"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523430646"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523430826"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523431006"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523431186"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523431366"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523431546"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523431726"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523431847",
+                "user_name": "neachdainn",
+                "content": "Using Rayon, is there a nice way to join all the threads every nth iteration, do something, and then resume parallel iteration where it was left off?"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523431906"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523432003",
+                "user_name": "neachdainn",
+                "content": "I.e., I'm iterating over 60,000 elements but every 100 I need to mutate something based on the results of the previous 100 iterations. The iterations are independent beyond that single mutation."
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523432073",
+                "user_name": "jonimake",
+                "content": "so each 100 item chunk is processed in parallel?"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523432086"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523432088",
+                "user_name": "jonimake",
+                "content": "and the chunks should be processed serially?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523432167",
+                "user_name": "neachdainn",
+                "content": "The 100 can be processed in parallel and the chunks serially, yes"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523432206",
+                "user_name": "neachdainn",
+                "content": "The parallel processing requires immutable access to a struct but the struct needs to be mutated after each chunk"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523432250",
+                "user_name": "neachdainn",
+                "content": "I'm writing an neural network library to prove to myself that I really understand the math and it would be great if Rayon would make parallel minibatches easy"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523432266"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523432320",
+                "user_name": "neachdainn",
+                "content": "I've got single threaded SGD working well but this stuff is crazy slow if it's not running on SIMD and/or GPU"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523432446"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523432622",
+                "user_name": "jonimake",
+                "content": "neachdainn: couldn't you split the vec into chunks and then fire off a parallel operation on the chunks in a loop or so"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523432626"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523432662",
+                "user_name": "neachdainn",
+                "content": "Yes. Yes I could."
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523432671",
+                "user_name": "neachdainn",
+                "content": "Thank you for the suggestion!"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523432806"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523432986"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523433166"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523433346"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523433526"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523433706"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523433886"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523434066"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523434246"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523434426"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523434606"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523434786"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523434966"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523435146"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523435163",
+                "user_name": "cswl",
+                "content": "So I just finished the Rust book...  https://i.imgur.com/bmrowLx.png "
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523435326"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523435506"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523435686"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523435866"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523436046"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523436226"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523436406"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523436586"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523436766"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523436860",
+                "user_name": "bugweiser",
+                "content": "In tokio, is there a way to unsubscribe from socket reads until a later time? I want to have an explicitly-managed buffer pool for decoding incoming streams and pause reading if there are no more available buffers. I've pinged the tokio gitter as well"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523436946"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523437126"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523437306"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523437381",
+                "user_name": "Moonlightning",
+                "content": "cswl: dat static linking doe"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523437486"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523437666"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523437808",
+                "user_name": "Moonlightning",
+                "content": "…ohay, when should you use #[inline]?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523437839",
+                "user_name": "Moonlightning",
+                "content": "I tend to just trust the compiler[*] to inline automatically when it would be beneficial"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523437846"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523437898",
+                "user_name": "Mutabah",
+                "content": "Moonlightning: On short methods that you'd want to be inlined in downstream crates (iirc)"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523437915",
+                "user_name": "Mutabah",
+                "content": "(I believe that marking as #[inline] enables saving of the MIR in the metadata)"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523438026"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438087",
+                "user_name": "xidorn",
+                "content": "why \"static XXX: *const Type\" doesn't work but \"staticmut XXX: *const Type\" works...?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438101",
+                "user_name": "Mutabah",
+                "content": "Are you sure?"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438191",
+                "user_name": "xidorn",
+                "content": "Mutabah: are you asking me or?"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523438206"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438215",
+                "user_name": "Mutabah",
+                "content": "yes. How does the first case not work?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438230",
+                "user_name": "xidorn",
+                "content": "\u0001ACTION wonders if there is playbot in this channel\u0001"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438273",
+                "user_name": "xidorn",
+                "content": "eval: static A: *const u32 = ::std::ptr::null();"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "eval!eval@moz-d2n.rie.25.85.IP",
+            "NOTICE",
+            [
+                "#rust",
+                "error[E0277]: the trait bound `*const u32: std::marker::Sync` is not satisfied"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "eval!eval@moz-d2n.rie.25.85.IP",
+            "NOTICE",
+            [
+                "#rust",
+                " --> src/main.rs:5:9"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "eval!eval@moz-d2n.rie.25.85.IP",
+            "NOTICE",
+            [
+                "#rust",
+                "~~~ Output truncated; full output at https://play.rust-lang.org/?gist=beb8203dc703850ecddc15982a013729&version=stable&mode=debug"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438294",
+                "user_name": "xidorn",
+                "content": "eval: static mut A: *const u32 = ::std::ptr::null();"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "eval!eval@moz-d2n.rie.25.85.IP",
+            "NOTICE",
+            [
+                "#rust",
+                "()"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438300",
+                "user_name": "Mutabah",
+                "content": "Aaah... yes, `static` requires Sync"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438301",
+                "user_name": "xidorn",
+                "content": "Mutabah: ^"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438329",
+                "user_name": "Mutabah",
+                "content": "eval: const A: *const u32 = ::std::ptr::null();"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438331",
+                "user_name": "Moonlightning",
+                "content": "…oooh, so things can't be inlined automatically between crates!"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "eval!eval@moz-d2n.rie.25.85.IP",
+            "NOTICE",
+            [
+                "#rust",
+                "()"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438343",
+                "user_name": "Mutabah",
+                "content": "xidorn: Maybe const is what you want?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438361",
+                "user_name": "xidorn",
+                "content": "Mutabah: no, because I need #[no_mangle]"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523438386"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438400",
+                "user_name": "Mutabah",
+                "content": "Ah, so you need an external read-only variable that is a`*const u32`"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438410",
+                "user_name": "xidorn",
+                "content": "right"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438515",
+                "user_name": "xidorn",
+                "content": "why does \"static\" has more restriction than \"static mut\"?"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523438566"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438579",
+                "user_name": "glandium",
+                "content": "Moonlightning: not without lto"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438613",
+                "user_name": "glandium",
+                "content": "xidorn: try using the static mut, and you'll see that'sthe one with restrictions"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438616",
+                "user_name": "Mutabah",
+                "content": "xidorn: `static` is safe to access from any thread"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438628",
+                "user_name": "oherrala",
+                "content": "Moonlightning: can you give brief summary about #[inline]? I have been wondering it myself lately, but not yet dived into studying it."
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438638",
+                "user_name": "xidorn",
+                "content": "glandium: because you cannot access it without unsafe at all?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438640",
+                "user_name": "Mutabah",
+                "content": "Meanwhile, as glandium just implied, `static mut` is not(you need an unsafe block to access it)"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438657",
+                "user_name": "neachdainn",
+                "content": "Do the initializers for TLS have to be const fn?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438664",
+                "user_name": "xidorn",
+                "content": "and you can access static safely?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438674",
+                "user_name": "glandium",
+                "content": "xidorn: yes"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438708",
+                "user_name": "glandium",
+                "content": "xidorn: but only if the type is Sync"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438725",
+                "user_name": "xidorn",
+                "content": "glandium: then can I unsafely make a !Sync static?"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523438746"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438752",
+                "user_name": "nox",
+                "content": "xidorn: No, use static mut. Or don't put a raw pointer in there, and put a Sync value."
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438756",
+                "user_name": "nox",
+                "content": "xidorn: What's that static for?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438784",
+                "user_name": "xidorn",
+                "content": "nox: for putting some value that C++ code can access"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438817",
+                "user_name": "nox",
+                "content": "xidorn: How do you put that value in it?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438833",
+                "user_name": "xidorn",
+                "content": "nox: I know a fixed length array is interopable, but lesssure how can I put a variable length array there"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438856",
+                "user_name": "nox",
+                "content": "I don't understand what you mean, where is the pointer valuecoming for, and how does it end up in the static?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438859",
+                "user_name": "xidorn",
+                "content": "nox: static XXX: *const u32 = &[1, 2, 3] as *const u32;"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438871",
+                "user_name": "nox",
+                "content": "I see."
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438899",
+                "user_name": "xidorn",
+                "content": "I don't think \"static XXX: &[u32]\" would work, would it?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438905",
+                "user_name": "nox",
+                "content": "static XXX: MyFancyArrayWrapper = MyFancyArrayWrapper(&[1, 2, 3] as *const u32)"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523438926"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438931",
+                "user_name": "xidorn",
+                "content": "and Sync for MyFancyArrayWrapper?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438931",
+                "user_name": "glandium",
+                "content": "xidorn: why not static XXX: [u32; 3] = [1, 2, 3]?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438936",
+                "user_name": "nox",
+                "content": "Using &'static [u32] directly would work but then it's painful to get on the C++ side,"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438943",
+                "user_name": "xidorn",
+                "content": "glandium: because you don't know the length in C++ side"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438947",
+                "user_name": "nox",
+                "content": "but yeah just don't use a pointer and do like glandium said."
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438958",
+                "user_name": "nox",
+                "content": "xidorn: How would you know the length in the C++ side with apointer?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438968",
+                "user_name": "glandium",
+                "content": "xidorn: bindgen should know"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523438984",
+                "user_name": "xidorn",
+                "content": "nox: sentinel"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439002",
+                "user_name": "xidorn",
+                "content": "glandium: bindgen works only if the data is flowed from the C++..."
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439009",
+                "user_name": "nox",
+                "content": "cbindgen is a thing."
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439011",
+                "user_name": "Moonlightning",
+                "content": "oherrala: #[inline] marks a function for inlining--that is, calls to the function will be optimized into the contents of the function."
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439022",
+                "user_name": "nox",
+                "content": "Moonlightning: may be optimized*"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439029",
+                "user_name": "glandium",
+                "content": "nox: not sure we have that in gecko, though"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439033",
+                "user_name": "Moonlightning",
+                "content": "may be, yeah."
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439036",
+                "user_name": "emilio",
+                "content": "glandium: wr uses it"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439036",
+                "user_name": "nox",
+                "content": "glandium: We use it for mp4parse at least."
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439036",
+                "user_name": "xidorn",
+                "content": "nox: that's potentially be a cycle dependency"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439039",
+                "user_name": "j_ey",
+                "content": "*may be inlined :P"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439044",
+                "user_name": "Moonlightning",
+                "content": "#[inline(always)] forces, but you shouldn't use itunless you know what you're doing"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439058",
+                "user_name": "Moonlightning",
+                "content": "#[inline(never)] prevents, and ditto"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439062",
+                "user_name": "nox",
+                "content": "xidorn: Then maybe just use a &'static [i32;0] computed fromthe actual &'static [i32]"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439090",
+                "user_name": "j_ey",
+                "content": "Moonlightning: generics can be inlined cross-crate"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439102",
+                "user_name": "nox",
+                "content": "Generics can still benefit from #[inline] though."
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523439106"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439107",
+                "user_name": "xidorn",
+                "content": "nox: does reference work at all? I know that \"static XXX: [u32; LEN] = ...\" works"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439124",
+                "user_name": "xidorn",
+                "content": "nox: but less sure about any reference..."
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439126",
+                "user_name": "nox",
+                "content": "xidorn: Why wouldn't they?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439137",
+                "user_name": "xidorn",
+                "content": "nox: isn't slice reference special in rust?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439157",
+                "user_name": "nox",
+                "content": "I said a &'static [i32; 0] from a &'static [i32]."
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439165",
+                "user_name": "nox",
+                "content": "The latter is fat, but the former is thin."
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439179",
+                "user_name": "xidorn",
+                "content": "hmmm"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439183",
+                "user_name": "xidorn",
+                "content": "I can probably try"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439206",
+                "user_name": "Ploppz",
+                "content": "Is there any way to just check if a thread is done? So unblocking join"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439259",
+                "user_name": "nox",
+                "content": "Ploppz: What do you mean by unblocking join?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439267",
+                "user_name": "Ploppz",
+                "content": "nonblocking*"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523439286"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439318",
+                "user_name": "xidorn",
+                "content": "nox: how can I produce the &'static [i32; 0] then?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439371",
+                "user_name": "xidorn",
+                "content": "use &[] directly would certainly pose a type mismatch, and transmute is not allowed for initializer of static currently"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523439466"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439467",
+                "user_name": "nox",
+                "content": "xidorn: I meant with unsafe code."
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439472",
+                "user_name": "nox",
+                "content": "And a pointer cast."
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439475",
+                "user_name": "nox",
+                "content": "Stop using transmute hah."
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439491",
+                "user_name": "nox",
+                "content": "xidorn: But I brainfarted anyway, just do pub static FOO: &'static [i32; 3] = &[1, 2, 3];"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439518",
+                "user_name": "nox",
+                "content": "That's a thin pointer, and you should be able to use it fromC++ without any issue."
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439542",
+                "user_name": "xidorn",
+                "content": "nox: even if the length is unknown in the C++ side?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439565",
+                "user_name": "nox",
+                "content": "xidorn: Why would that matter?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439577",
+                "user_name": "xidorn",
+                "content": "I... don't know..."
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523439646"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439669",
+                "user_name": "xidorn",
+                "content": "nox: so in this case I should use &'static [i32; 3] but not [i32; 3] directly? is there difference on abi between a reference and an array?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523439727",
+                "user_name": "nox",
+                "content": "xidorn: Absolutely no idea, I just know that &'static [i32; 3] is ok, and the sky is too blue outside for me to wonder about the ABI differences between passing pointers and arrays to C++. :P"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523439826"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523440006"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523440050",
+                "user_name": "rayascott-M",
+                "content": "For those who haven't seen it yet, I published a list of Rust bloggers in the user forum, including a spreadsheet with over 300 blogs: https://users.rust-lang.org/t/fearless-rust-bloggers/16770"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523440158",
+                "user_name": "neachdainn",
+                "content": "I'm using Rayon and I have two `Vec<Vec<f32>>` that Iwant to zip together and then iterate over in parallel. Is that possible?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523440184",
+                "user_name": "neachdainn",
+                "content": "Just calling `par_iter` on the zipped iterator doesn't seem to work and I see no `zip` type method  on the ParallelIterator type"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523440186"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523440205",
+                "user_name": "mitsuhiko",
+                "content": "to cast a lifetime to 'static, mem::transmute is the only way I suppose?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523440214",
+                "user_name": "mitsuhiko",
+                "content": "or is there something nicer"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523440229",
+                "user_name": "udoprog",
+                "content": "neachdainn: zip? so you want to traverse the first element of each child vector as a Vec<f32>, then the second, ...?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523440251",
+                "user_name": "j_ey",
+                "content": "mitsuhiko: I'm over my head, but something to do with Box::leak?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523440266",
+                "user_name": "neachdainn",
+                "content": "No. I want to iterate over `(&Vec<f32>, &Vec<f32>)`"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523440275",
+                "user_name": "mitsuhiko",
+                "content": "or is there something nicer"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523440281",
+                "user_name": "mitsuhiko",
+                "content": "sorry. wrong key :)"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523440292",
+                "user_name": "mitsuhiko",
+                "content": "j_ey: i already have it allocated so i don't want a box"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523440354",
+                "user_name": "udoprog",
+                "content": "ah, got it."
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523440366"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523440546"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523440553",
+                "user_name": "udoprog",
+                "content": "neachdainn: something like this https://play.rust-lang.org/?gist=e59126e5c4decc503a2b90632a45e7d7&version=stable (sorry about the sum, it was the quickest way I could consume the iterator :P)?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523440602",
+                "user_name": "neachdainn",
+                "content": "Ah. `par_iter` and then zip. Thanks!"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523440711",
+                "user_name": "udoprog",
+                "content": "you're welcome, good luck!"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523440726"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523440906"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523441086"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523441210",
+                "user_name": "Trangar",
+                "content": "For iterating over an enum, do people use {!crate enum_iterator_derive} or something else?"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523441210",
+                "user_name": "rustbot",
+                "content": "enum-iterator-derive (0.1.1) - Procedural macro to iterate over the variants of a field-less enum -> https://crates.io/crates/enum-iterator-derive <https://docs.rs/enum-iterator-derive>"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523441218",
+                "user_name": "hsivonen",
+                "content": "is --emit asm supposed to work on windows?"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523441266"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523441446"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523441626"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523441806"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523441986"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523442166"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523442346"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523442526"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523442706"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523442886"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523443066"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523443246"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523443328",
+                "user_name": "Aquazi",
+                "content": "hello I have an object which has many parameters"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523443363",
+                "user_name": "Aquazi",
+                "content": "I want to create a new object that only has (some) of theparameters but want to filter the methods"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523443381",
+                "user_name": "Aquazi",
+                "content": "I need it for a following JSON conversion and encoding"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523443383",
+                "user_name": "j_ey",
+                "content": "Aquazi: some code would help"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523443426"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523443436",
+                "user_name": "Aquazi",
+                "content": "like obj = {foo: \"bar\", foo2: \"bar2\", foo3: \"bar3\",foo4: \"bar4\"};"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523443447",
+                "user_name": "Aquazi",
+                "content": "I want to create an obj2 that only has some of the properties"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523443459",
+                "user_name": "Aquazi",
+                "content": "now I know I can use a simple constructor in which I copythe key values I'm interested in"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523443510",
+                "user_name": "Aquazi",
+                "content": "like () => {obj2 = {}; obj2.foo = obj.foo; obj.foo4: obj.foo4}"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523443514",
+                "user_name": "Aquazi",
+                "content": "and return the obj2"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523443522",
+                "user_name": "Aquazi",
+                "content": "or something like this"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523443534",
+                "user_name": "Aquazi",
+                "content": "But I was wondering if there was some \"best\" solution"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523443539",
+                "user_name": "Aquazi",
+                "content": "or best practice"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523443606"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523443755",
+                "user_name": "Aquazi",
+                "content": "j_ey, something like this should work"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523443763",
+                "user_name": "Aquazi",
+                "content": "but I was wondering if there are better way to achieve it:"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523443764",
+                "user_name": "Aquazi",
+                "content": "https://gist.github.com/VulcanRav/bc086cff68a151a699b3808c6a7ac010"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523443786"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523443966"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523444098",
+                "user_name": "Aquazi",
+                "content": "ooops"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523444105",
+                "user_name": "Aquazi",
+                "content": "obviously wrong channel"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523444110",
+                "user_name": "Aquazi",
+                "content": "somebody kill me please"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523444146"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523444326"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523444506"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523444686"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523444866"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523445046"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523445226"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523445406"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523445586"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523445766"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523445946"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523446126"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523446306"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "Lunatrius`!Lunatrius@moz-9hl.j2r.38.77.IP",
+            "NICK",
+            [
+                "Lunatrius"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523446486"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523446524",
+                "user_name": "Mateon1",
+                "content": "So... I've just encountered a rustc panic that is NOT anICE. It's inside rustc_trans, on an assertion that lto is disabled - librustc_trans/back/link.rs:1507:9"
+            }
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523446557",
+                "user_name": "Mateon1",
+                "content": "I hit this issue when I tried to mess with cargo-fuzz, and manually added lto to the Cargo.toml"
+            }
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523446666"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523446846"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523447026"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523447206"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523447386"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            null,
+            "PING",
+            [],
+            null
+        ]
+    },
+    {
+        "type": "misc",
+        "args": [
+            "levin.mozilla.org",
+            "PONG",
+            [
+                "levin.mozilla.org",
+                "1523447566"
+            ],
+            null
+        ]
+    },
+    {
+        "type": "new-message",
+        "args": [
+            "#rust",
+            {
+                "time_stamp": "1523447614",
+                "user_name": "spear2",
+                "content": "is there a way to derive AsRef<Self> ?"
+            }
+        ]
+    }
+]
