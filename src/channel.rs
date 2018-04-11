@@ -39,10 +39,15 @@ impl Channel {
         }
     }
 
-    pub fn add_users(&mut self, text: &str) {
+    pub fn add_users(&mut self, text: &str) -> u32 {
+        let mut count = 0;
         for un in text.split(" ") {
-            self.users.insert(String::from(un), ChannelUser::with_name(&un));
+            match self.users.insert(String::from(un), ChannelUser::with_name(&un)) {
+                Some(_) => (),
+                None => count += 1,
+            }
         }
+        count
     }
 
     pub fn add_message(&mut self, msg: ChannelMessage) {
@@ -57,8 +62,11 @@ impl Channel {
         self.users.iter().map(|u| u.1.name.to_string()).collect()
     }
 
-    pub fn remove_user(&mut self, username: &str) {
-        self.users.remove(username);
+    pub fn remove_user(&mut self, username: &str) -> bool {
+        match self.users.remove(username) {
+            Some(_) => true,
+            None => false,
+        }
     }
 }
 

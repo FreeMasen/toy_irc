@@ -46,7 +46,7 @@ impl Server {
     pub fn with(listener: Box<Fn(Event)>) -> Server {
         Server {
             welcome_msg: String::new(),
-            is_connected: true,
+            connection_status: ConnectionStatus::NotConnected,
             motd: String::new(),
             channels: HashMap::new(),
             listener
@@ -76,7 +76,7 @@ impl Server {
 
     pub fn add_users(&mut self, channel: &str, names: &str) {
         let ch = self.channels.entry(String::from(channel)).or_insert(Channel::new());
-        ch.add_users(names)
+        ch.add_users(names);
     }
 
     pub fn add_ch_topic(&mut self, channel: &str, topic: &str) {
@@ -86,9 +86,32 @@ impl Server {
 
     pub fn remove_user(&mut self, username: &str) {
         self.channels = self.channels.clone().into_iter().map(|mut e| {
-            e.1.remove_user(username);
+            if e.1.remove_user(username) {
+                (self.listener)(Event::NewUsers(e.0.clone(), e.1.users()));
+            }
             e
         }).collect();
+    }
+
+    pub fn change_nick(&mut self, old: &str, new: &str) {
+        println!("change_nick {}, {}", &old, &new);
+        self.remove_user(old);
+        self.channels = self.channels.clone().into_iter().map(|mut e| {
+            if e.1.add_users(new) > 0 {
+                (self.listener)(Event::NewUsers(e.0.clone(), e.1.users()));
+            }
+            e
+        }).collect();
+    }
+
+    fn short_name(logn_name: Option<String>) -> String {
+        match logn_name {
+            Some(p) => {
+                let parts: Vec<&str> = p.split('!').collect();
+                String::from(parts[0])
+            },
+            None => String::new()
+        }
     }
 
     #[allow(unused_variables)]
@@ -103,33 +126,29 @@ impl Server {
         }
         match msg.command {
             Command::PASS(pwd) => (self.listener)(Event::Misc(msg.prefix, String::from("PASS"), vec![pwd], None)),
-            Command::NICK(name) => (self.listener)(Event::Misc(msg.prefix, String::from("NICK"), vec![name], None)),
+            Command::NICK(name) => {
+                let old_name = Self::short_name(msg.prefix);
+                self.change_nick(&old_name, &name);
+                (self.listener)(Event::Misc(None, String::from("NICK"), vec![old_name, name], None))
+            },
             Command::USER(user, mode, realname) => (self.listener)(Event::Misc(msg.prefix, String::from("USER"), vec![user, mode, realname], None)),
             Command::OPER(name, pwd) => (self.listener)(Event::Misc(msg.prefix, String::from("OPER"), vec![name, pwd], None)),
             Command::UserMODE(mode, nics) => (self.listener)(Event::Misc(msg.prefix, String::from("UserMODE"), vec![], None)),
             Command::SERVICE(service, nic, reserved, dist, tp, res_info,) => (self.listener)(Event::Misc(msg.prefix, String::from("SERVICE"), vec![], None)),
             Command::QUIT(comment) => {
-                let user_name = match msg.prefix {
-                    Some(p) => {
-                        let parts: Vec<&str> = p.split('!').collect();
-                        String::from(parts[0])
-                    },
-                    None => String::new()
-                };
+                let user_name = Self::short_name(msg.prefix);
                 self.remove_user(&user_name);
             },
             Command::SQUIT(server, comment) => (self.listener)(Event::Misc(msg.prefix, String::from("SQUIT"), vec![server, comment], None)),
             Command::JOIN(list, keys, realname) => {
-                let user_name = match msg.prefix {
-                    Some(p) => {
-                        let parts: Vec<&str> = p.split('!').collect();
-                        String::from(parts[0])
-                    },
-                    None => String::new()
-                };
+                let user_name = Self::short_name(msg.prefix);
                 self.add_users(&list, &user_name);
             },
-            Command::PART(list, comment) => (self.listener)(Event::Misc(msg.prefix, String::from("PART"), vec![list, comment.unwrap_or(String::new())], None)),
+            Command::PART(list, comment) => {
+                let user_name = Self::short_name(msg.prefix);
+                self.remove_user(&user_name);
+                (self.listener)(Event::Misc(Some(user_name), String::from("PART"), vec![list, comment.unwrap_or(String::new())], None))
+            },
             Command::ChannelMODE(channel, modes) => (self.listener)(Event::Misc(msg.prefix, String::from("ChannelMODE"), vec![channel, modes.iter().map(|m|format!("{:?}", m)).collect::<Vec<String>>().join(", ")], None)),
             Command::TOPIC(channel, topic) => (self.listener)(Event::Misc(msg.prefix, String::from("TOPIC"), vec![channel, topic.unwrap_or(String::new())], None)),
             Command::NAMES(list, target) => (self.listener)(Event::Misc(msg.prefix, String::from("NAMES"), vec![list.unwrap_or(String::new()), target.unwrap_or(String::new())], None)),
@@ -140,6 +159,8 @@ impl Server {
             Command::NOTICE(target, text) => {
                 if &target == "AUTH" {
                     self.connection_status = ConnectionStatus::Authenticating;
+                } else if target.starts_with("#") || target.starts_with("&") {
+                    self.new_message(msg.prefix, target, text)
                 } else {
                     (self.listener)(Event::Misc(msg.prefix, String::from("NOTICE"), vec![target, text], None))
                 }
