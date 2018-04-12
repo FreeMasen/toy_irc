@@ -94,7 +94,6 @@ impl Server {
     }
 
     pub fn change_nick(&mut self, old: &str, new: &str) {
-        println!("change_nick {}, {}", &old, &new);
         self.remove_user(old);
         self.channels = self.channels.clone().into_iter().map(|mut e| {
             if e.1.add_users(new) > 0 {
@@ -104,8 +103,8 @@ impl Server {
         }).collect();
     }
 
-    fn short_name(logn_name: Option<String>) -> String {
-        match logn_name {
+    fn short_name(long_name: Option<String>) -> String {
+        match long_name {
             Some(p) => {
                 let parts: Vec<&str> = p.split('!').collect();
                 String::from(parts[0])
@@ -114,32 +113,59 @@ impl Server {
         }
     }
 
+    fn change_user_chan_mode(&mut self, channel: &str, change: Vec<Mode<ChannelMode>>) {
+        for mode in change {
+            match mode {
+                Plus(ch_mode, user_name) => {
+                    if let Some(un) = user_name {
+                        if let Some(ch) = self.channels.get(&channel) {
+                            ch.add_user_level(un, ch_mode);
+                            (self.listener)(Event::NewUsers(channel, ch.users()));
+                        }
+                    } else {
+                        (self.listener)(Event::Misc(None, String::from("ChannelMODE"), vec![channel, format!("{:?}", ch_mode), user_name.unwrap_or(String::new())], None));
+                    }
+                },
+                Minus(ch_mode, user_name) => {
+                    if let Some(un) = user_name {
+                        if let Some(ch) = self.channels.get(&channel) {
+                            ch.remove_user_level(un, ch_mode);
+                            (self.listener)(Event::NewUsers(channel, ch.users()));
+                        }
+                    } else {
+                        (self.listener)(Event::Misc(None, String::from("ChannelMODE"), vec![channel, format!("{:?}", ch_mode), user_name.unwrap_or(String::new())], None));
+                    }
+                }
+            }
+        }
+        
+    }
+
     #[allow(unused_variables)]
     pub fn handle_message(&mut self, msg: Message) {
-        match msg.tags {
+        let tags = match msg.tags {
             Some(tags) => {
-                for tag in tags {
-                    println!("tag: {:?}", tag);
-                }
+                let tag_strs: Vec<String> = tags.into_iter().map(|e| format!("{:?}", e)).collect();
+                Some(tag_strs.join(", "))
             },
-            _ => ()
-        }
+            _ => None
+        };
         match msg.command {
-            Command::PASS(pwd) => (self.listener)(Event::Misc(msg.prefix, String::from("PASS"), vec![pwd], None)),
+            Command::PASS(pwd) => (self.listener)(Event::Misc(msg.prefix, String::from("PASS"), vec![pwd], tags)),
             Command::NICK(name) => {
-                let old_name = Self::short_name(msg.prefix);
-                self.change_nick(&old_name, &name);
-                (self.listener)(Event::Misc(None, String::from("NICK"), vec![old_name, name], None))
+                let new_name = Self::short_name(msg.prefix);
+                self.change_nick(&name, &new_name);
+                (self.listener)(Event::Misc(None, String::from("NICK"), vec![new_name, name], tags))
             },
-            Command::USER(user, mode, realname) => (self.listener)(Event::Misc(msg.prefix, String::from("USER"), vec![user, mode, realname], None)),
-            Command::OPER(name, pwd) => (self.listener)(Event::Misc(msg.prefix, String::from("OPER"), vec![name, pwd], None)),
-            Command::UserMODE(mode, nics) => (self.listener)(Event::Misc(msg.prefix, String::from("UserMODE"), vec![], None)),
-            Command::SERVICE(service, nic, reserved, dist, tp, res_info,) => (self.listener)(Event::Misc(msg.prefix, String::from("SERVICE"), vec![], None)),
+            Command::USER(user, mode, realname) => (self.listener)(Event::Misc(msg.prefix, String::from("USER"), vec![user, mode, realname], tags)),
+            Command::OPER(name, pwd) => (self.listener)(Event::Misc(msg.prefix, String::from("OPER"), vec![name, pwd], tags)),
+            Command::UserMODE(mode, nics) => (self.listener)(Event::Misc(msg.prefix, String::from("UserMODE"), vec![], tags)),
+            Command::SERVICE(service, nic, reserved, dist, tp, res_info,) => (self.listener)(Event::Misc(msg.prefix, String::from("SERVICE"), vec![service, nic, reserved, dist, tp, res_info], tags)),
             Command::QUIT(comment) => {
                 let user_name = Self::short_name(msg.prefix);
                 self.remove_user(&user_name);
             },
-            Command::SQUIT(server, comment) => (self.listener)(Event::Misc(msg.prefix, String::from("SQUIT"), vec![server, comment], None)),
+            Command::SQUIT(server, comment) => (self.listener)(Event::Misc(msg.prefix, String::from("SQUIT"), vec![server, comment], tags)),
             Command::JOIN(list, keys, realname) => {
                 let user_name = Self::short_name(msg.prefix);
                 self.add_users(&list, &user_name);
@@ -147,14 +173,16 @@ impl Server {
             Command::PART(list, comment) => {
                 let user_name = Self::short_name(msg.prefix);
                 self.remove_user(&user_name);
-                (self.listener)(Event::Misc(Some(user_name), String::from("PART"), vec![list, comment.unwrap_or(String::new())], None))
+                (self.listener)(Event::Misc(Some(user_name), String::from("PART"), vec![list, comment.unwrap_or(String::new())], tags))
             },
-            Command::ChannelMODE(channel, modes) => (self.listener)(Event::Misc(msg.prefix, String::from("ChannelMODE"), vec![channel, modes.iter().map(|m|format!("{:?}", m)).collect::<Vec<String>>().join(", ")], None)),
-            Command::TOPIC(channel, topic) => (self.listener)(Event::Misc(msg.prefix, String::from("TOPIC"), vec![channel, topic.unwrap_or(String::new())], None)),
-            Command::NAMES(list, target) => (self.listener)(Event::Misc(msg.prefix, String::from("NAMES"), vec![list.unwrap_or(String::new()), target.unwrap_or(String::new())], None)),
-            Command::LIST(list, target) => (self.listener)(Event::Misc(msg.prefix, String::from("LIST"), vec![list.unwrap_or(String::new()), target.unwrap_or(String::new())], None)),
-            Command::INVITE(nickname, channel) => (self.listener)(Event::Misc(msg.prefix, String::from("INVITE"),vec![nickname, channel], None)),
-            Command::KICK(list, user_list, comment) => (self.listener)(Event::Misc(msg.prefix, String::from("KICK"), vec![list, user_list, comment.unwrap_or(String::new())], None)),
+            Command::ChannelMODE(channel, modes) => {
+                self.change_user_chan_mode(channel, modes)
+            },
+            Command::TOPIC(channel, topic) => (self.listener)(Event::Misc(msg.prefix, String::from("TOPIC"), vec![channel, topic.unwrap_or(String::new())], tags)),
+            Command::NAMES(list, target) => (self.listener)(Event::Misc(msg.prefix, String::from("NAMES"), vec![list.unwrap_or(String::new()), target.unwrap_or(String::new())], tags)),
+            Command::LIST(list, target) => (self.listener)(Event::Misc(msg.prefix, String::from("LIST"), vec![list.unwrap_or(String::new()), target.unwrap_or(String::new())], tags)),
+            Command::INVITE(nickname, channel) => (self.listener)(Event::Misc(msg.prefix, String::from("INVITE"),vec![nickname, channel], tags)),
+            Command::KICK(list, user_list, comment) => (self.listener)(Event::Misc(msg.prefix, String::from("KICK"), vec![list, user_list, comment.unwrap_or(String::new())], tags)),
             Command::PRIVMSG(target, text) => self.new_message(msg.prefix, target, text),
             Command::NOTICE(target, text) => {
                 if &target == "AUTH" {
@@ -162,64 +190,64 @@ impl Server {
                 } else if target.starts_with("#") || target.starts_with("&") {
                     self.new_message(msg.prefix, target, text)
                 } else {
-                    (self.listener)(Event::Misc(msg.prefix, String::from("NOTICE"), vec![target, text], None))
+                    (self.listener)(Event::Misc(msg.prefix, String::from("NOTICE"), vec![target, text], tags))
                 }
             },
-            Command::MOTD(target) => (self.listener)(Event::Misc(msg.prefix, String::from("MOTD"), vec![target.unwrap_or(String::new())], None)),
-            Command::LUSERS(mask, target) => (self.listener)(Event::Misc(msg.prefix, String::from("LUSERS"), vec![mask.unwrap_or(String::new()), target.unwrap_or(String::new())], None)),
-            Command::VERSION(version) => (self.listener)(Event::Misc(msg.prefix, String::from("VERSION"), vec![version.unwrap_or(String::new())], None)),
-            Command::STATS(query, target) => (self.listener)(Event::Misc(msg.prefix, String::from("STATS"), vec![query.unwrap_or(String::new()), target.unwrap_or(String::new())], None)),
-            Command::LINKS(server, mask) => (self.listener)(Event::Misc(msg.prefix, String::from("LINKS"), vec![server.unwrap_or(String::new()), mask.unwrap_or(String::new())], None)),
-            Command::TIME(time) => (self.listener)(Event::Misc(msg.prefix, String::from("TIME"), vec![time.unwrap_or(String::new())], None)),
-            Command::CONNECT(server, port, remote) => (self.listener)(Event::Misc(msg.prefix, String::from("CONNECT"), vec![server, port, remote.unwrap_or(String::new())], None)),
-            Command::TRACE(target) => (self.listener)(Event::Misc(msg.prefix, String::from("TRACE"), vec![target.unwrap_or(String::new())], None)),
-            Command::ADMIN(target) => (self.listener)(Event::Misc(msg.prefix, String::from("ADMIN"), vec![target.unwrap_or(String::new())], None)),
-            Command::INFO(target) => (self.listener)(Event::Misc(msg.prefix, String::from("INFO"), vec![target.unwrap_or(String::new())], None)),
-            Command::SERVLIST(mask, tp) => (self.listener)(Event::Misc(msg.prefix, String::from("SERVLIST"), vec![mask.unwrap_or(String::new()), tp.unwrap_or(String::new())], None)),
-            Command::SQUERY(name, text) => (self.listener)(Event::Misc(msg.prefix, String::from("SQUERY"), vec![name, text], None)),
-            Command::WHO(mask, operator) => (self.listener)(Event::Misc(msg.prefix, String::from("WHO"), vec![mask.unwrap_or(String::new()), format!("{:?}", operator)], None)),
-            Command::WHOIS(target, list) => (self.listener)(Event::Misc(msg.prefix, String::from("WHOIS"), vec![target.unwrap_or(String::new()), list], None)),
-            Command::WHOWAS(list, count, target) => (self.listener)(Event::Misc(msg.prefix, String::from("WHOWAS"), vec![list, count.unwrap_or(String::new()), target.unwrap_or(String::new())], None)),
-            Command::KILL(name, comment) => (self.listener)(Event::Misc(msg.prefix, String::from("KILL"), vec![name, comment], None)),
-            Command::PING(me, you) => (self.listener)(Event::Misc(msg.prefix, String::from("PING"), vec![], None)),
-            Command::PONG(me, you) => (self.listener)(Event::Misc(msg.prefix, String::from("PONG"), vec![me, you.unwrap_or(String::new())], None)),
-            Command::ERROR(message) => (self.listener)(Event::Misc(msg.prefix, String::from("ERROR"), vec![message], None)),
-            Command::AWAY(message) => (self.listener)(Event::Misc(msg.prefix, String::from("AWAY"), vec![message.unwrap_or(String::new())], None)),
-            Command::REHASH => (self.listener)(Event::Misc(msg.prefix, String::from("REHASH"), vec![], None)),
-            Command::DIE => (self.listener)(Event::Misc(msg.prefix, String::from("DIE"), vec![], None)),
-            Command::RESTART => (self.listener)(Event::Misc(msg.prefix, String::from("RESTART"), vec![], None)),
-            Command::SUMMON(user, target, channel) => (self.listener)(Event::Misc(msg.prefix, String::from("SUMMON"), vec![user, target.unwrap_or(String::new()), channel.unwrap_or(String::new())], None)),
-            Command::USERS(list) => (self.listener)(Event::Misc(msg.prefix, String::from("USERS"), vec![list.unwrap_or(String::new())], None)),
-            Command::WALLOPS(text) => (self.listener)(Event::Misc(msg.prefix, String::from("WALLOPS"), vec![ text], None)),
-            Command::USERHOST(list) => (self.listener)(Event::Misc(msg.prefix, String::from("USERHOST"), vec![ list.join(", ")], None)),
-            Command::ISON(list) => (self.listener)(Event::Misc(msg.prefix, String::from("ISON"), vec![ list.join(" ")], None)),
-            Command::SAJOIN(name, channel) => (self.listener)(Event::Misc(msg.prefix, String::from("SAJOIN"), vec![name, channel], None)),
-            Command::SAMODE(target, modes, params) => (self.listener)(Event::Misc(msg.prefix, String::from("SAMODE"), vec![target, modes, params.unwrap_or(String::new())], None)),
-            Command::SANICK(old, new) => (self.listener)(Event::Misc(msg.prefix, String::from("SANICK"), vec![old, new], None)),
-            Command::SAPART(name, comment) => (self.listener)(Event::Misc(msg.prefix, String::from("SAPART"), vec![ name, comment], None)),
-            Command::SAQUIT(name, comment) => (self.listener)(Event::Misc(msg.prefix, String::from("SAQUIT"), vec![name, comment], None)),
-            Command::NICKSERV(message) => (self.listener)(Event::Misc(msg.prefix, String::from("NICKSERV"), vec![ message], None)),
-            Command::CHANSERV(message) => (self.listener)(Event::Misc(msg.prefix, String::from("CHANSERV"), vec![ message], None)),
-            Command::OPERSERV(message) => (self.listener)(Event::Misc(msg.prefix, String::from("OPERSERV"), vec![ message], None)),
-            Command::BOTSERV(message) => (self.listener)(Event::Misc(msg.prefix, String::from("BOTSERV"), vec![ message], None)),
-            Command::HOSTSERV(message) => (self.listener)(Event::Misc(msg.prefix, String::from("HOSTSERV"), vec![ message], None)),
-            Command::MEMOSERV(message) => (self.listener)(Event::Misc(msg.prefix, String::from("MEMOSERV"), vec![ message], None)),
-            Command::CAP(cmd, sub_cmd, arg, param) => (self.listener)(Event::Misc(msg.prefix, String::from("CAP"), vec![cmd.unwrap_or(String::new()), format!("{:?}", sub_cmd), arg.unwrap_or(String::new()), param.unwrap_or(String::new())], None)),
-            Command::AUTHENTICATE(name) => (self.listener)(Event::Misc(msg.prefix, String::from("AUTHENTICATE"), vec![ name], None)),
-            Command::ACCOUNT(name) => (self.listener)(Event::Misc(msg.prefix, String::from("ACCOUNT"), vec![ name], None)),
-            Command::METADATA(target, sub_cmd, params, param) => (self.listener)(Event::Misc(msg.prefix, String::from("METADATA"), vec![target, format!("{:?}", sub_cmd), format!("{:?}", params), param.unwrap_or(String::new())], None)),
-            Command::MONITOR(command, list) => (self.listener)(Event::Misc(msg.prefix, String::from("MONITOR"), vec![command, list.unwrap_or(String::new())], None)),
+            Command::MOTD(target) => (self.listener)(Event::Misc(msg.prefix, String::from("MOTD"), vec![target.unwrap_or(String::new())], tags)),
+            Command::LUSERS(mask, target) => (self.listener)(Event::Misc(msg.prefix, String::from("LUSERS"), vec![mask.unwrap_or(String::new()), target.unwrap_or(String::new())], tags)),
+            Command::VERSION(version) => (self.listener)(Event::Misc(msg.prefix, String::from("VERSION"), vec![version.unwrap_or(String::new())], tags)),
+            Command::STATS(query, target) => (self.listener)(Event::Misc(msg.prefix, String::from("STATS"), vec![query.unwrap_or(String::new()), target.unwrap_or(String::new())], tags)),
+            Command::LINKS(server, mask) => (self.listener)(Event::Misc(msg.prefix, String::from("LINKS"), vec![server.unwrap_or(String::new()), mask.unwrap_or(String::new())], tags)),
+            Command::TIME(time) => (self.listener)(Event::Misc(msg.prefix, String::from("TIME"), vec![time.unwrap_or(String::new())], tags)),
+            Command::CONNECT(server, port, remote) => (self.listener)(Event::Misc(msg.prefix, String::from("CONNECT"), vec![server, port, remote.unwrap_or(String::new())], tags)),
+            Command::TRACE(target) => (self.listener)(Event::Misc(msg.prefix, String::from("TRACE"), vec![target.unwrap_or(String::new())], tags)),
+            Command::ADMIN(target) => (self.listener)(Event::Misc(msg.prefix, String::from("ADMIN"), vec![target.unwrap_or(String::new())], tags)),
+            Command::INFO(target) => (self.listener)(Event::Misc(msg.prefix, String::from("INFO"), vec![target.unwrap_or(String::new())], tags)),
+            Command::SERVLIST(mask, tp) => (self.listener)(Event::Misc(msg.prefix, String::from("SERVLIST"), vec![mask.unwrap_or(String::new()), tp.unwrap_or(String::new())], tags)),
+            Command::SQUERY(name, text) => (self.listener)(Event::Misc(msg.prefix, String::from("SQUERY"), vec![name, text], tags)),
+            Command::WHO(mask, operator) => (self.listener)(Event::Misc(msg.prefix, String::from("WHO"), vec![mask.unwrap_or(String::new()), format!("{:?}", operator)], tags)),
+            Command::WHOIS(target, list) => (self.listener)(Event::Misc(msg.prefix, String::from("WHOIS"), vec![target.unwrap_or(String::new()), list], tags)),
+            Command::WHOWAS(list, count, target) => (self.listener)(Event::Misc(msg.prefix, String::from("WHOWAS"), vec![list, count.unwrap_or(String::new()), target.unwrap_or(String::new())], tags)),
+            Command::KILL(name, comment) => (self.listener)(Event::Misc(msg.prefix, String::from("KILL"), vec![name, comment], tags)),
+            Command::PING(me, you) => (self.listener)(Event::Misc(msg.prefix, String::from("PING"), vec![], tags)),
+            Command::PONG(me, you) => (self.listener)(Event::Misc(msg.prefix, String::from("PONG"), vec![me, you.unwrap_or(String::new())], tags)),
+            Command::ERROR(message) => (self.listener)(Event::Misc(msg.prefix, String::from("ERROR"), vec![message], tags)),
+            Command::AWAY(message) => (self.listener)(Event::Misc(msg.prefix, String::from("AWAY"), vec![message.unwrap_or(String::new())], tags)),
+            Command::REHASH => (self.listener)(Event::Misc(msg.prefix, String::from("REHASH"), vec![], tags)),
+            Command::DIE => (self.listener)(Event::Misc(msg.prefix, String::from("DIE"), vec![], tags)),
+            Command::RESTART => (self.listener)(Event::Misc(msg.prefix, String::from("RESTART"), vec![], tags)),
+            Command::SUMMON(user, target, channel) => (self.listener)(Event::Misc(msg.prefix, String::from("SUMMON"), vec![user, target.unwrap_or(String::new()), channel.unwrap_or(String::new())], tags)),
+            Command::USERS(list) => (self.listener)(Event::Misc(msg.prefix, String::from("USERS"), vec![list.unwrap_or(String::new())], tags)),
+            Command::WALLOPS(text) => (self.listener)(Event::Misc(msg.prefix, String::from("WALLOPS"), vec![ text], tags)),
+            Command::USERHOST(list) => (self.listener)(Event::Misc(msg.prefix, String::from("USERHOST"), vec![ list.join(", ")], tags)),
+            Command::ISON(list) => (self.listener)(Event::Misc(msg.prefix, String::from("ISON"), vec![ list.join(" ")], tags)),
+            Command::SAJOIN(name, channel) => (self.listener)(Event::Misc(msg.prefix, String::from("SAJOIN"), vec![name, channel], tags)),
+            Command::SAMODE(target, modes, params) => (self.listener)(Event::Misc(msg.prefix, String::from("SAMODE"), vec![target, modes, params.unwrap_or(String::new())], tags)),
+            Command::SANICK(old, new) => (self.listener)(Event::Misc(msg.prefix, String::from("SANICK"), vec![old, new], tags)),
+            Command::SAPART(name, comment) => (self.listener)(Event::Misc(msg.prefix, String::from("SAPART"), vec![ name, comment], tags)),
+            Command::SAQUIT(name, comment) => (self.listener)(Event::Misc(msg.prefix, String::from("SAQUIT"), vec![name, comment], tags)),
+            Command::NICKSERV(message) => (self.listener)(Event::Misc(msg.prefix, String::from("NICKSERV"), vec![ message], tags)),
+            Command::CHANSERV(message) => (self.listener)(Event::Misc(msg.prefix, String::from("CHANSERV"), vec![ message], tags)),
+            Command::OPERSERV(message) => (self.listener)(Event::Misc(msg.prefix, String::from("OPERSERV"), vec![ message], tags)),
+            Command::BOTSERV(message) => (self.listener)(Event::Misc(msg.prefix, String::from("BOTSERV"), vec![ message], tags)),
+            Command::HOSTSERV(message) => (self.listener)(Event::Misc(msg.prefix, String::from("HOSTSERV"), vec![ message], tags)),
+            Command::MEMOSERV(message) => (self.listener)(Event::Misc(msg.prefix, String::from("MEMOSERV"), vec![ message], tags)),
+            Command::CAP(cmd, sub_cmd, arg, param) => (self.listener)(Event::Misc(msg.prefix, String::from("CAP"), vec![cmd.unwrap_or(String::new()), format!("{:?}", sub_cmd), arg.unwrap_or(String::new()), param.unwrap_or(String::new())], tags)),
+            Command::AUTHENTICATE(name) => (self.listener)(Event::Misc(msg.prefix, String::from("AUTHENTICATE"), vec![ name], tags)),
+            Command::ACCOUNT(name) => (self.listener)(Event::Misc(msg.prefix, String::from("ACCOUNT"), vec![ name], tags)),
+            Command::METADATA(target, sub_cmd, params, param) => (self.listener)(Event::Misc(msg.prefix, String::from("METADATA"), vec![target, format!("{:?}", sub_cmd), format!("{:?}", params), param.unwrap_or(String::new())], tags)),
+            Command::MONITOR(command, list) => (self.listener)(Event::Misc(msg.prefix, String::from("MONITOR"), vec![command, list.unwrap_or(String::new())], tags)),
             Command::BATCH(operator, sub_cmd, params) => {
                 let params = if let Some(params) = params {
                     params.join(", ")
                 } else {
                     String::new()
                 };
-                (self.listener)(Event::Misc(msg.prefix, String::from("BATCH"), vec![operator, format!("{:?}", sub_cmd), params], None));
+                (self.listener)(Event::Misc(msg.prefix, String::from("BATCH"), vec![operator, format!("{:?}", sub_cmd), params], tags));
             },
-            Command::CHGHOST(user, host) => (self.listener)(Event::Misc(msg.prefix, String::from("CHGHOST"), vec![user, host], None)),
+            Command::CHGHOST(user, host) => (self.listener)(Event::Misc(msg.prefix, String::from("CHGHOST"), vec![user, host], tags)),
             Command::Response(res, args, suffix) => self.response(res, args, suffix) ,
-            Command::Raw(command, params, param) => (self.listener)(Event::Misc(msg.prefix, String::from("Raw"), vec![command, params.join(", "), param.unwrap_or(String::new())], None)),
+            Command::Raw(command, params, param) => (self.listener)(Event::Misc(msg.prefix, String::from("Raw"), vec![command, params.join(", "), param.unwrap_or(String::new())], tags)),
             
         }
     }
