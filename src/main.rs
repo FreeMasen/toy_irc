@@ -1,21 +1,27 @@
-extern crate irc;
+#[macro_use]
+extern crate diesel;
+extern crate dotenv;
 extern crate futures;
-extern crate tokio_core;
+extern crate irc;
+extern crate irc_client;
 extern crate serde;
 extern crate serde_json;
+extern crate tokio_core;
 
-extern crate irc_client;
 
 use std::fs::{OpenOptions, File};
 use std::io::Write;
 use std::path::PathBuf;
 use std::time::{SystemTime, UNIX_EPOCH, Duration};
 
+use dotenv::dotenv;
+
 use irc_client::prelude::*;
 use irc::client::prelude::*;
 use serde_json::to_string;
 
 fn main() {
+    dotenv().ok();
     let start_time = SystemTime::now().duration_since(UNIX_EPOCH).unwrap_or(Duration::from_secs(0));
     write_entry(format!("{{\"type\": \"started\", \"args\": [{}]}}", start_time.as_secs()));
     let config = Config {
